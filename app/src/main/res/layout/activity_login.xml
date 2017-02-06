@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@drawable/signinbg"
+        android:scaleType="centerCrop"
+
+        >
+    </FrameLayout>
+
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_gravity="center"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/logo2"
+        android:layout_marginTop="180dp"
+        android:layout_centerHorizontal="true"
+
+
+        />
+
+    <com.example.android.sipeja.customfonts.MyTextView
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SIPEJA"
+        android:textColor="#fff"
+        android:textSize="34dp"
+        android:gravity="center"
+        android:layout_marginTop="80dp"
+
+
+        />
+
+
+    <com.example.android.sipeja.customfonts.MyTextView
+        android:id="@+id/acc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/create"
+        android:gravity="center"
+        android:lines="1"
+
+        />
+
+    <TextView
+        android:id="@+id/create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#2b73e1"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="Copyright 2016"
+        android:lines="1"
+        android:layout_marginBottom="22dp"
+
+
+        />
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:layout_above="@+id/acc"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <com.example.android.sipeja.customfonts.MyEditText
+            android:id="@+id/editName"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            android:layout_marginLeft="46dp"
+            android:textColorHint="@color/colorhint"
+            android:textColor="@color/colortext"
+            android:maxLength="20"
+            android:background="#0000"
+            android:padding="16dp"
+            android:gravity="left"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginLeft="56dp"
+            android:layout_marginRight="56dp"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="#dad8d8"/>
+
+        <com.example.android.sipeja.customfonts.MyEditText
+            android:id="@+id/editPassword"
+            android:textSize="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:layout_marginLeft="46dp"
+            android:layout_marginRight="46dp"
+            android:textColorHint="@color/colorhint"
+            android:textColor="@color/colortext"
+            android:background="#0000"
+            android:padding="16dp"
+            android:inputType="textPassword"
+
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_marginLeft="56dp"
+            android:layout_marginRight="56dp"
+            android:layout_height="1dp"
+
+            android:background="#dad8d8"/>
+
+
+
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#2b73e1"
+            android:id="@+id/btnSignIn"
+            android:text="Masuk"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:gravity="center"
+            android:layout_marginLeft="120dp"
+            android:layout_marginRight="120dp"
+            android:padding="9dp"
+            android:layout_marginTop="20dp"
+            />
+
+
+
+
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>
