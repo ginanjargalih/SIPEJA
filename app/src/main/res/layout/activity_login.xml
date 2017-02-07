@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#fff">
 
 
@@ -60,7 +61,7 @@
         android:textColor="#2b73e1"
         android:layout_alignParentBottom="true"
         android:gravity="center"
-        android:text="Copyright 2016"
+        android:text="Copyright \u00a9 2017"
         android:lines="1"
         android:layout_marginBottom="22dp"
 
@@ -78,53 +79,38 @@
         android:layout_alignParentStart="true">
 
 
-        <com.example.android.sipeja.customfonts.MyEditText
-            android:id="@+id/editName"
-            android:textSize="16dp"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/etNameLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"
+            app:passwordToggleEnabled="false"
             android:layout_marginLeft="46dp"
-            android:textColorHint="@color/colorhint"
-            android:textColor="@color/colortext"
-            android:maxLength="20"
-            android:background="#0000"
-            android:padding="16dp"
-            android:gravity="left"
-            />
+            android:layout_marginRight="46dp">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_marginLeft="56dp"
-            android:layout_marginRight="56dp"
-            android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
-            android:background="#dad8d8"/>
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Username"
+                android:inputType="text"/>
+        </android.support.design.widget.TextInputLayout>
 
-        <com.example.android.sipeja.customfonts.MyEditText
-            android:id="@+id/editPassword"
-            android:textSize="16dp"
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/etPasswordLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            app:passwordToggleEnabled="true"
             android:layout_marginLeft="46dp"
-            android:layout_marginRight="46dp"
-            android:textColorHint="@color/colorhint"
-            android:textColor="@color/colortext"
-            android:background="#0000"
-            android:padding="16dp"
-            android:inputType="textPassword"
+            android:layout_marginRight="46dp">
 
-            />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_marginLeft="56dp"
-            android:layout_marginRight="56dp"
-            android:layout_height="1dp"
-
-            android:background="#dad8d8"/>
-
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword"/>
+        </android.support.design.widget.TextInputLayout>
 
 
 
@@ -143,11 +129,6 @@
             android:padding="9dp"
             android:layout_marginTop="20dp"
             />
-
-
-
-
-
 
 
     </LinearLayout>

@@ -3,6 +3,7 @@ package com.example.android.sipeja;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,8 +18,11 @@ import java.util.ArrayList;
 
 
 public class Login extends AppCompatActivity {
-    EditText editEmail, editPassword, editName;
+    public EditText editEmail, editPassword, editName;
     Button btnSignIn, btnRegister;
+
+    public String inputNama;
+    public String inputPassword;
 
     String URL= "http://sipeja.pe.hu/test_android/index.php";
 
@@ -39,6 +43,22 @@ public class Login extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //untuk username
+                inputNama = editName.getText().toString();
+
+                //untuk password
+                inputPassword = editPassword.getText().toString();
+
+                if(TextUtils.isEmpty(inputNama)) {
+                    editName.setError("Field Username!");
+                    return;
+                }
+
+                else if(TextUtils.isEmpty(inputPassword)) {
+                    editPassword.setError("Field Password!");
+                    return;
+                }
+
                 AttemptLogin attemptLogin= new AttemptLogin();
                 attemptLogin.execute(editName.getText().toString(),editPassword.getText().toString(),"");
             }
