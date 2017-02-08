@@ -36,7 +36,7 @@
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:src="@drawable/logo2"
-        android:layout_marginTop="245dp"
+        android:layout_marginTop="235dp"
         android:layout_centerHorizontal="true"
         />
 
@@ -101,7 +101,7 @@
             >
 
 
-            <com.example.android.sipeja.customfonts.MyTextView
+            <Button
                 android:layout_marginRight="5dp"
                 android:layout_weight="1"
                 android:id="@+id/signin"
@@ -113,6 +113,7 @@
                 android:background="#2b73e1"
                 android:padding="10dp"
                 android:gravity="center"
+                android:onClick="klik"
                 />
 
 
