@@ -10,7 +10,6 @@
     android:paddingTop="0dp"
     tools:context="com.example.android.sipeja.MainActivity">
 
-
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,5 +19,15 @@
         android:id="@+id/toolbar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+
+
+
+    </ScrollView>
 
 </RelativeLayout>

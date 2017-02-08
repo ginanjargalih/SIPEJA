@@ -11,11 +11,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.sipeja.config.Config;
+import com.example.android.sipeja.profile.Profile;
+
+import static android.R.attr.id;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String EXTRA_MESSAGE1 = "profile" ;
+    static final int ACT2_REQUEST = 99;  // request code
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.mProfil:
-                Toast.makeText(getApplicationContext(), "Profil anda !", Toast.LENGTH_LONG).show();
+                klikProfile();
                 return true;
 
             case R.id.mLogAktifitas:
@@ -58,6 +65,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    //untuk menampilkan profile
+    public void klikProfile() {
+        Intent intent = new Intent(this, Profile.class);
+        //cara 2
+        intent.putExtra(Profile.EXTRA_MESSAGE1, "Profil Anda");
+        startActivityForResult(intent, ACT2_REQUEST);
+    }
+
+    //untuk fungsi keluar dan menghapus data di share prefrence
     public void klikKeluar() {
 
         //Creating an alert dialog to confirm logout

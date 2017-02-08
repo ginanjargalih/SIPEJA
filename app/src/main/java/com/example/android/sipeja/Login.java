@@ -130,7 +130,7 @@ public class Login extends AppCompatActivity  {
 
                     //Adding values to editor
                     editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
-                    editor.putString(Config.Name, "user");
+                    editor.putString(Config.Name,result.getString("user"));
                     editor.putString(Config.Password,inputPassword);
 
                     //Saving values to editor
