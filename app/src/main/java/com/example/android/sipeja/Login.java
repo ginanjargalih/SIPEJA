@@ -2,6 +2,7 @@ package com.example.android.sipeja;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.android.sipeja.config.Config;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
@@ -19,26 +22,17 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import static com.example.android.sipeja.Menu_awal.Email;
-import static com.example.android.sipeja.Menu_awal.NIP;
-import static com.example.android.sipeja.Menu_awal.Name;
-import static com.example.android.sipeja.Menu_awal.Password;
 
 
-public class Login extends AppCompatActivity {
-    public EditText editEmail, editPassword, editName;
-    Button btnSignIn, btnRegister;
+public class Login extends AppCompatActivity  {
+    public EditText editPassword, editName;
 
     public String inputNama;
     public String inputPassword;
 
-    String URL= "http://sipeja.pe.hu/test_android/index.php";
+    String URL =  Config.URL + "test_android/index.php";
 
     JSONParser jsonParser=new JSONParser();
-
-    int i=0;
-
-    SharedPreferences sharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +41,7 @@ public class Login extends AppCompatActivity {
 
     }
 
-    public void launchRingDialog(View view) {
+    public void login(View view) {
         editName=(EditText)findViewById(R.id.editName);
         editPassword=(EditText)findViewById(R.id.editPassword);
 
@@ -59,12 +53,12 @@ public class Login extends AppCompatActivity {
         inputPassword = editPassword.getText().toString();
 
         if(TextUtils.isEmpty(inputNama)) {
-            editName.setError("Field Username!");
+            editName.setError("Isi Username!");
             return;
         }
 
         else if(TextUtils.isEmpty(inputPassword)) {
-            editPassword.setError("Field Password!");
+            editPassword.setError("Isi Password!");
             return;
         }
 
@@ -125,8 +119,25 @@ public class Login extends AppCompatActivity {
 
             try {
                 if (result != null) {
-                    Toast.makeText(getApplicationContext(),result.getString("user"),Toast.LENGTH_LONG).show();
-                   // masukan_data();
+                    Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
+
+                    //sp
+                    //Creating a shared preference
+                    SharedPreferences sharedPreferences = Login.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
+
+                    //Creating editor to store values to shared preferences
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                    //Adding values to editor
+                    editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
+                    editor.putString(Config.Name, "user");
+                    editor.putString(Config.Password,inputPassword);
+
+                    //Saving values to editor
+                    editor.commit();
+
+                    Intent it = new Intent(Login.this,MainActivity.class);
+                    startActivity(it);
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Unable to retrieve any data from server", Toast.LENGTH_LONG).show();
@@ -140,15 +151,5 @@ public class Login extends AppCompatActivity {
 
     }
 
-    public void masukan_data(){
-        SharedPreferences.Editor editor = sharedpreferences.edit();
 
-        editor.putString(Name, "user");
-        editor.putString(Password, "password");
-        //editor.putString(NIP, "nip");
-        //editor.putString(Email, "email");
-        editor.apply();
-        Toast.makeText(Login.this,"Thanks",Toast.LENGTH_LONG).show();
-
-    }
 }

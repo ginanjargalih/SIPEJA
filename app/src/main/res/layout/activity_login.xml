@@ -119,7 +119,7 @@
             android:id="@+id/btnSignIn"
             android:text="Masuk"
             android:textStyle="bold"
-            android:onClick="launchRingDialog"
+            android:onClick="login"
             android:textColor="#fff"
             android:gravity="center"
             android:layout_marginLeft="120dp"

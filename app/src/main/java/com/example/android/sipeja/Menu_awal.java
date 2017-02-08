@@ -10,15 +10,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.sipeja.config.Config;
+
 public class Menu_awal extends AppCompatActivity {
 
     //share prefrence
-    public static final String MyPREFERENCES = "MyPrefs" ;
-    public static final String Name = "nameKey";
-    public static final String Password = "passKey";
-    public static final String NIP = "nipKey";
-    public static final String Email = "emailKey";
-
     SharedPreferences sharedpreferences;
 
     @Override
@@ -26,7 +22,8 @@ public class Menu_awal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_awal);
 
-        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        //Creating a shared preference
+        sharedpreferences = Menu_awal.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
 
     }
 
@@ -35,8 +32,6 @@ public class Menu_awal extends AppCompatActivity {
 
         String value = sharedpreferences.getString("nameKey",null);
         if (value == null) {
-            Toast.makeText(getApplicationContext(), "Anda belum memasukan data !", Toast.LENGTH_LONG).show();
-
             Intent it = new Intent(Menu_awal.this,Login.class);
             startActivity(it);
         }
