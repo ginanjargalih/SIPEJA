@@ -5,10 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -38,6 +41,15 @@ public class Login extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //warna status bar
+        if(Build.VERSION.SDK_INT >= 21){
+
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimaryDark));
+        }
 
     }
 
@@ -136,7 +148,7 @@ public class Login extends AppCompatActivity  {
                     //Saving values to editor
                     editor.commit();
 
-                    Intent it = new Intent(Login.this,MainActivity.class);
+                    Intent it = new Intent(Login.this,Menu_utama.class);
                     startActivity(it);
 
                 } else {

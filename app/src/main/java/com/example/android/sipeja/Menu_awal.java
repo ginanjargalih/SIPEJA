@@ -4,9 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +24,15 @@ public class Menu_awal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_awal);
+
+        //warna status bar
+        if(Build.VERSION.SDK_INT >= 21){
+
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimaryDark));
+        }
 
         //Creating a shared preference
         sharedpreferences = Menu_awal.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
@@ -51,7 +63,7 @@ public class Menu_awal extends AppCompatActivity {
                 }
             }).start();
 
-            Intent it = new Intent(Menu_awal.this,MainActivity.class);
+            Intent it = new Intent(Menu_awal.this,Menu_utama.class);
             startActivity(it);
         }
 

@@ -3,17 +3,21 @@ package com.example.android.sipeja.profile;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.example.android.sipeja.MainActivity;
+import com.example.android.sipeja.Menu_utama;
 import com.example.android.sipeja.R;
 import com.example.android.sipeja.config.Config;
 
@@ -26,6 +30,15 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+        //warna status bar
+        if(Build.VERSION.SDK_INT >= 21){
+
+            Window window = this.getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            window.setStatusBarColor(this.getResources().getColor(R.color.colorMain));
+        }
 
         //untuk toolbar
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar2);
@@ -47,7 +60,7 @@ public class Profile extends AppCompatActivity {
         //baca data
         String user = sharedPreferences.getString(Config.Name,"");
 
-        TextView txtView=(TextView)findViewById(R.id.user);
+        TextView txtView=(TextView)findViewById(R.id.nama);
         txtView.setText(user);
     }
 
@@ -74,7 +87,7 @@ public class Profile extends AppCompatActivity {
 
     public void klikKembali() {
         Intent intent2 = getIntent();
-        intent2.putExtra(MainActivity.EXTRA_MESSAGE1,"");
+        intent2.putExtra(Menu_utama.EXTRA_MESSAGE1,"");
         setResult(RESULT_OK, intent2);
         finish();
 
