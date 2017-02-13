@@ -74,7 +74,7 @@ public class Login extends AppCompatActivity  {
             return;
         }
 
-        final ProgressDialog ringProgressDialog = ProgressDialog.show(Login.this, "Mohon Tunggu ...",	"Masuk ke Aplikasi ...", true);
+        final ProgressDialog ringProgressDialog = ProgressDialog.show(Login.this, "Mohon Tunggu",	"Masuk ke Aplikasi", true);
         ringProgressDialog.setCancelable(true);
         new Thread(new Runnable() {
             @Override

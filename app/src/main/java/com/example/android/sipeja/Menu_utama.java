@@ -34,6 +34,7 @@ public class Menu_utama extends AppCompatActivity
     public static final String EXTRA_MESSAGE1 = "profile" ;
     static final int ACT2_REQUEST = 99;  // request code
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +78,11 @@ public class Menu_utama extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //untuk menu default yg dipilih
+        navigationView.setCheckedItem(R.id.nav_dashboard);
+        navigationView.getMenu().performIdentifierAction(R.id.nav_dashboard, 0);
+
+        //nama pada drawer
         View hView =  navigationView.getHeaderView(0);
         TextView nav_user = (TextView)hView.findViewById(R.id.nama);
         nav_user.setText(user);
@@ -121,15 +127,15 @@ public class Menu_utama extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_dashboard) {
 
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_order) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_notifikasi) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_log) {
 
-        }else if (id == R.id.nav_share) {
+        }else if (id == R.id.nav_profile) {
             klikProfile();
         } else if (id == R.id.nav_keluar) {
             klikKeluar();

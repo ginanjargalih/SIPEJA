@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ public class Menu_awal extends AppCompatActivity {
 
     //share prefrence
     SharedPreferences sharedpreferences;
+    ProgressBar pb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,9 @@ public class Menu_awal extends AppCompatActivity {
         //Creating a shared preference
         sharedpreferences = Menu_awal.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
 
+
     }
+
 
 
     public void klik(View view) {
@@ -48,7 +52,7 @@ public class Menu_awal extends AppCompatActivity {
             startActivity(it);
         }
         else {
-            final ProgressDialog ringProgressDialog = ProgressDialog.show(Menu_awal.this, "Mohon Tunggu ...",	"Masuk ke Aplikasi ...", true);
+            final ProgressDialog ringProgressDialog = ProgressDialog.show(Menu_awal.this, null,	"Masuk ke Aplikasi", true);
             ringProgressDialog.setCancelable(true);
             new Thread(new Runnable() {
                 @Override

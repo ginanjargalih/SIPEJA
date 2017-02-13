@@ -7,13 +7,10 @@ import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.example.android.sipeja.MainActivity;
@@ -44,14 +41,22 @@ public class Profile extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar2);
         setSupportActionBar(myToolbar);
         getSupportActionBar().setTitle("Profil");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                klikKembali();
+            }
+        });
 
 
         //ambil intent
         Intent intent = getIntent();
         //ambil datanya
         String pesan = intent.getStringExtra(MainActivity.EXTRA_MESSAGE1);
-        Toast t = Toast.makeText(getApplicationContext(),pesan,Toast.LENGTH_LONG);
-        t.show();
 
 
         //Creating a shared preference
@@ -64,26 +69,6 @@ public class Profile extends AppCompatActivity {
         txtView.setText(user);
     }
 
-    //tollbar
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_profile, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
-        switch (item.getItemId()) {
-            case R.id.mKembali:
-                klikKembali();
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 
     public void klikKembali() {
         Intent intent2 = getIntent();
