@@ -8,6 +8,8 @@ public class Config {
 
     public static final String URL = "http://sipeja.pe.hu/";
 
+
+
     //Keys for Sharedpreferences
     //This would be the name of our shared preferences
     public static final String MyPREFERENCES = "MyPrefs" ;

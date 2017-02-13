@@ -28,11 +28,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
         <activity android:name=".profile.Profile" />
         <activity
             android:name=".Menu_utama"
             android:label="@string/title_activity_menu_utama"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".log_activity.Log"
+            android:label="@string/title_activity_log"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 

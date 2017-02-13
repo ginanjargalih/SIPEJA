@@ -13,14 +13,13 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 
-import com.example.android.sipeja.MainActivity;
 import com.example.android.sipeja.Menu_utama;
 import com.example.android.sipeja.R;
 import com.example.android.sipeja.config.Config;
 
 public class Profile extends AppCompatActivity {
 
-    public static final String EXTRA_MESSAGE1 = "profile" ;
+    public static final String EXTRA_MESSAGE5 = "profile" ;
 
 
     @Override
@@ -56,7 +55,7 @@ public class Profile extends AppCompatActivity {
         //ambil intent
         Intent intent = getIntent();
         //ambil datanya
-        String pesan = intent.getStringExtra(MainActivity.EXTRA_MESSAGE1);
+        String pesan = intent.getStringExtra(Menu_utama.EXTRA_MESSAGE5);
 
 
         //Creating a shared preference
@@ -72,7 +71,7 @@ public class Profile extends AppCompatActivity {
 
     public void klikKembali() {
         Intent intent2 = getIntent();
-        intent2.putExtra(Menu_utama.EXTRA_MESSAGE1,"");
+        intent2.putExtra(Menu_utama.EXTRA_MESSAGE5,"");
         setResult(RESULT_OK, intent2);
         finish();
 
