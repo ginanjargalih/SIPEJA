@@ -36,7 +36,8 @@
         <activity
             android:name=".log_activity.Log"
             android:label="@string/title_activity_log"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

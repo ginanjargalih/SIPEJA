@@ -134,7 +134,7 @@ public class Menu_utama extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_dashboard) {
-
+            //halaman ini
         } else if (id == R.id.nav_order) {
 
         } else if (id == R.id.nav_notifikasi) {

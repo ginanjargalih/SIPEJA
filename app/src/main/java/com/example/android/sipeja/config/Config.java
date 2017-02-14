@@ -20,6 +20,12 @@ public class Config {
     public static final String NIP = "nipKey";
     public static final String Email = "emailKey";
 
+
+    //JSON for log actvitity
+    public static final String KEY_USERNAME = "username";
+    public static final String KEY_AKTIVITAS = "aktivitas";
+    public static final String JSON_ARRAY = "result";
+
     //We will use this to store the boolean in sharedpreference to track user is loggedin or not
     public static final String LOGGEDIN_SHARED_PREF = "loggedin";
 }
