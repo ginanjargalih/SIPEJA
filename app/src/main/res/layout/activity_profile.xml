@@ -77,7 +77,7 @@
 
 
             <TextView
-                android:text="Hak Akses"
+                android:text="Email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -89,7 +89,7 @@
                 android:text="....."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/uJabatan"
+                android:id="@+id/uEmail"
                 android:layout_weight="1"
                 android:textSize="25sp"
                 android:textAlignment="center"

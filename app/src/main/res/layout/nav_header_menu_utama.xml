@@ -10,17 +10,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark"
-    android:weightSum="1">
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:paddingTop="16dp"
         app:srcCompat="@drawable/user"
-        android:layout_weight="0.57"
-        />
+        android:layout_weight="0.57"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -36,6 +34,6 @@
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NIP : " />
+        android:text="android.studio@android.com" />
 
 </LinearLayout>

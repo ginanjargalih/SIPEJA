@@ -64,6 +64,7 @@ public class Menu_utama extends AppCompatActivity
 
         //baca data
         String user = sharedPreferences.getString(Config.Name,"");
+        String email = sharedPreferences.getString(Config.Email,"");
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -92,6 +93,11 @@ public class Menu_utama extends AppCompatActivity
         View hView =  navigationView.getHeaderView(0);
         TextView nav_user = (TextView)hView.findViewById(R.id.nama);
         nav_user.setText(user);
+
+
+        View hView2 =  navigationView.getHeaderView(0);
+        TextView nav_email = (TextView)hView2.findViewById(R.id.email);
+        nav_email.setText(email);
 
     }
 

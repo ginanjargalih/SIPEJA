@@ -62,10 +62,18 @@ public class Profile extends AppCompatActivity {
         SharedPreferences sharedPreferences = Profile.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
 
         //baca data
-        String user = sharedPreferences.getString(Config.Name,"");
+        String user = sharedPreferences.getString(Config.NamePengguna,"");
+        String nip = sharedPreferences.getString(Config.NIP,"");
+        String email = sharedPreferences.getString(Config.Email,"");
 
         TextView txtView=(TextView)findViewById(R.id.nama);
         txtView.setText(user);
+
+        TextView txtView2=(TextView)findViewById(R.id.uNIP);
+        txtView2.setText(nip);
+
+        TextView txtView3=(TextView)findViewById(R.id.uEmail);
+        txtView3.setText(email);
     }
 
 

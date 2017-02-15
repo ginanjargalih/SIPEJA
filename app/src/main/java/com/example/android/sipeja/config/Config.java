@@ -16,6 +16,7 @@ public class Config {
 
     //This would be used to store the email of current logged in user
     public static final String Name = "nameKey";
+    public static final String NamePengguna = "npKey";
     public static final String Password = "passKey";
     public static final String NIP = "nipKey";
     public static final String Email = "emailKey";

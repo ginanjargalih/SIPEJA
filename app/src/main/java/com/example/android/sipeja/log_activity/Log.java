@@ -106,6 +106,7 @@ public class Log extends AppCompatActivity
 
         //baca data
         String user = sharedPreferences.getString(Config.Name,"");
+        String email = sharedPreferences.getString(Config.Email,"");
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -125,6 +126,11 @@ public class Log extends AppCompatActivity
         View hView =  navigationView.getHeaderView(0);
         TextView nav_user = (TextView)hView.findViewById(R.id.nama);
         nav_user.setText(user);
+
+
+        View hView2 =  navigationView.getHeaderView(0);
+        TextView nav_email = (TextView)hView2.findViewById(R.id.email);
+        nav_email.setText(email);
 
 
     }
