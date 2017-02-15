@@ -3,6 +3,8 @@ package com.example.android.sipeja.profile;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,9 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
+import com.amulyakhare.textdrawable.TextDrawable;
 import com.example.android.sipeja.Menu_utama;
 import com.example.android.sipeja.R;
 import com.example.android.sipeja.config.Config;
@@ -62,7 +66,7 @@ public class Profile extends AppCompatActivity {
         SharedPreferences sharedPreferences = Profile.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
 
         //baca data
-        String user = sharedPreferences.getString(Config.NamePengguna,"");
+        String user = sharedPreferences.getString(Config.Name,"");
         String nip = sharedPreferences.getString(Config.NIP,"");
         String email = sharedPreferences.getString(Config.Email,"");
 
@@ -74,6 +78,14 @@ public class Profile extends AppCompatActivity {
 
         TextView txtView3=(TextView)findViewById(R.id.uEmail);
         txtView3.setText(email);
+
+        //untuk foto
+        String s=user.substring(0,1);
+
+        TextDrawable drawable = TextDrawable.builder().buildRoundRect(s,R.color.colorKontak, 100);
+
+        ImageView image = (ImageView) findViewById(R.id.imgProfile);
+        image.setImageDrawable(drawable);
     }
 
 

@@ -23,11 +23,13 @@ import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amulyakhare.textdrawable.TextDrawable;
 import com.example.android.sipeja.Login;
 import com.example.android.sipeja.Menu_utama;
 import com.example.android.sipeja.R;
@@ -122,7 +124,7 @@ public class Log extends AppCompatActivity
         navigationView.setCheckedItem(R.id.nav_log);
         navigationView.getMenu().performIdentifierAction(R.id.nav_log, 0);
 
-        //nama pada drawer
+        //drawer
         View hView =  navigationView.getHeaderView(0);
         TextView nav_user = (TextView)hView.findViewById(R.id.nama);
         nav_user.setText(user);
@@ -131,6 +133,13 @@ public class Log extends AppCompatActivity
         View hView2 =  navigationView.getHeaderView(0);
         TextView nav_email = (TextView)hView2.findViewById(R.id.email);
         nav_email.setText(email);
+
+        View hView3 =  navigationView.getHeaderView(0);
+        String s=user.substring(0,1);
+        TextDrawable drawable = TextDrawable.builder().buildRoundRect(s,R.color.colorKontak, 100);
+
+        ImageView image = (ImageView)hView3.findViewById(R.id.imageView);
+        image.setImageDrawable(drawable);
 
 
     }
@@ -364,7 +373,7 @@ public class Log extends AppCompatActivity
 
         //Creating an alert dialog to confirm logout
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Apakah anda benar akan keluar?");
+        alertDialogBuilder.setMessage("Apakah Anda yakin untuk keluar?");
         alertDialogBuilder.setPositiveButton("Ya",
                 new DialogInterface.OnClickListener() {
                     @Override

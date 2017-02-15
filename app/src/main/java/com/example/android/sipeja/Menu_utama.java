@@ -24,6 +24,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amulyakhare.textdrawable.TextDrawable;
 import com.example.android.sipeja.config.Config;
 import com.example.android.sipeja.log_activity.Log;
 import com.example.android.sipeja.profile.Profile;
@@ -89,17 +90,23 @@ public class Menu_utama extends AppCompatActivity
         navigationView.setCheckedItem(R.id.nav_dashboard);
         navigationView.getMenu().performIdentifierAction(R.id.nav_dashboard, 0);
 
-        //nama pada drawer
+        //pada drawer
         View hView =  navigationView.getHeaderView(0);
         TextView nav_user = (TextView)hView.findViewById(R.id.nama);
         nav_user.setText(user);
-
 
         View hView2 =  navigationView.getHeaderView(0);
         TextView nav_email = (TextView)hView2.findViewById(R.id.email);
         nav_email.setText(email);
 
-    }
+        View hView3 =  navigationView.getHeaderView(0);
+        String s=user.substring(0,1);
+        TextDrawable drawable = TextDrawable.builder().buildRoundRect(s,R.color.colorKontak, 100);
+
+        ImageView image = (ImageView)hView3.findViewById(R.id.imageView);
+        image.setImageDrawable(drawable);
+
+    };
 
     @Override
     public void onBackPressed() {
@@ -182,7 +189,7 @@ public class Menu_utama extends AppCompatActivity
 
         //Creating an alert dialog to confirm logout
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Apakah anda benar akan keluar?");
+        alertDialogBuilder.setMessage("Apakah Anda yakin untuk keluar?");
         alertDialogBuilder.setPositiveButton("Ya",
                 new DialogInterface.OnClickListener() {
                     @Override
