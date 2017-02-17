@@ -36,14 +36,12 @@ import com.example.android.sipeja.R;
 import com.example.android.sipeja.config.Config;
 import com.example.android.sipeja.profile.Profile;
 
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,12 +55,14 @@ public class Log extends AppCompatActivity
     public static final String EXTRA_MESSAGE4 = "Log" ;
     static final int ACT2_REQUEST = 99;  // request code
 
-    //gabung
-    //deklarasi variabel
+    // gabung
+    // deklarasi variabel
     private EditText editTextId;
     private Button buttonGet;
     private TextView textViewResult;
     private ProgressDialog loading;
+    public int hitungLog;
+    private String username;
 
     private TextView title;
 
@@ -109,7 +109,7 @@ public class Log extends AppCompatActivity
         //baca data
         String user = sharedPreferences.getString(Config.Name,"");
         String email = sharedPreferences.getString(Config.Email,"");
-
+        username = sharedPreferences.getString(Config.NamePengguna,"");
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -140,7 +140,6 @@ public class Log extends AppCompatActivity
 
         ImageView image = (ImageView)hView3.findViewById(R.id.imageView);
         image.setImageDrawable(drawable);
-
 
     }
 
@@ -321,15 +320,18 @@ public class Log extends AppCompatActivity
                 JSONObject Data = result.getJSONObject(i);
                 String a = Data.getString(Config.KEY_USERNAME);
                 String b = Data.getString(Config.KEY_AKTIVITAS);
-//               LogAktivitas data = new LogAktivitas("" + Data.getString(Config.KEY_USERNAME), "" + Data.getString(Config.KEY_AKTIVITAS));
-//               mLogAktivitas[i] = data;
-//
-//               items.add("Cek:" + mLogAktivitas[i].getUsername() + mLogAktivitas[i].getAktivitas());
-                items.add(a + "  " + "-" + "  " + b);
+                String c = Data.getString(Config.KEY_WAKTU);
+
+                if (a.equals(username)) {
+                    // your code
+                    items.add(b + " " + " " + c);
+
+                    hitungLog = hitungLog + 1;
+                }
             }
 
-            TOTAL_LIST_ITEMS = result.length();
-            NUM_ITEMS_PAGE = 100; //100 data per
+            TOTAL_LIST_ITEMS = hitungLog;
+            NUM_ITEMS_PAGE = 25; //25 data per list
 
             Btnfooter();
 

@@ -8,8 +8,6 @@ public class Config {
 
     public static final String URL = "http://sipeja.pe.hu/";
 
-
-
     //Keys for Sharedpreferences
     //This would be the name of our shared preferences
     public static final String MyPREFERENCES = "MyPrefs" ;
@@ -21,10 +19,10 @@ public class Config {
     public static final String NIP = "nipKey";
     public static final String Email = "emailKey";
 
-
     //JSON for log actvitity
     public static final String KEY_USERNAME = "username";
     public static final String KEY_AKTIVITAS = "aktivitas";
+    public static final String KEY_WAKTU = "updated_at";
     public static final String JSON_ARRAY = "result";
 
     //We will use this to store the boolean in sharedpreference to track user is loggedin or not
