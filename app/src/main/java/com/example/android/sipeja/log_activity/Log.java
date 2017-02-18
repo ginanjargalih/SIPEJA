@@ -242,7 +242,9 @@ public class Log extends AppCompatActivity
     private void CheckBtnBackGroud(int index)
     {
         show_null = (TextView) findViewById(R.id.textView5);
+
         if(noOfBtns != 0) {
+            show_null.setVisibility(View.GONE);
 
             title.setText("Halaman " + (index + 1) + " dari " + noOfBtns);
             for (int i = 0; i < noOfBtns; i++) {
@@ -255,7 +257,7 @@ public class Log extends AppCompatActivity
                 }
             }
         }else{
-            show_null.setText("Belum ada aktivitas untuk saat ini");
+            show_null.setVisibility(View.VISIBLE);
 
         }
     }

@@ -68,6 +68,7 @@
         android:id="@+id/textView5"
         android:textAlignment="center"
         android:layout_gravity="center_vertical"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="invisible" />
 
 </android.support.design.widget.CoordinatorLayout>
