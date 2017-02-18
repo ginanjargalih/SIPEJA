@@ -7,6 +7,33 @@
     android:fitsSystemWindows="true"
     tools:context="com.example.android.sipeja.log_activity.Log">
 
+    <include layout="@layout/content_log" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:fillViewport="true"
+        android:fadingEdge="none"
+        android:layout_gravity="bottom|end"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:fadeScrollbars="true">
+
+        <LinearLayout
+            android:id="@+id/btnLay"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:scrollbars="horizontal"
+            android:scrollIndicators="bottom"
+            android:fadingEdge="horizontal">
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,31 +61,13 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_log" />
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:fillViewport="true"
-        android:fadingEdge="none"
-        android:layout_gravity="bottom|end"
-        android:scrollbarAlwaysDrawHorizontalTrack="false"
-        android:scrollbarAlwaysDrawVerticalTrack="false"
-        android:fadeScrollbars="true">
-
-        <LinearLayout
-            android:id="@+id/btnLay"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:orientation="horizontal"
-            android:scrollbars="horizontal"
-            android:scrollIndicators="bottom"
-            android:fadingEdge="horizontal">
-
-        </LinearLayout>
-
-    </HorizontalScrollView>
+    <TextView
+        android:text="Belum ada aktivitas untuk saat ini."
+        android:layout_width="366dp"
+        android:layout_height="50dp"
+        android:id="@+id/textView5"
+        android:textAlignment="center"
+        android:layout_gravity="center_vertical"
+        android:textSize="20sp" />
 
 </android.support.design.widget.CoordinatorLayout>

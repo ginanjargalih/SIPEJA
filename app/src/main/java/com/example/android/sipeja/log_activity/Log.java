@@ -65,6 +65,7 @@ public class Log extends AppCompatActivity
     private String username;
 
     private TextView title;
+    private TextView show_null;
 
     ListView listLog; //deklarasi list untuk menampilkan username dan aktivitas
 
@@ -236,23 +237,27 @@ public class Log extends AppCompatActivity
     /**
      * Method for Checking Button Backgrounds```````
      */
+
+
     private void CheckBtnBackGroud(int index)
     {
-        title.setText("Halaman "+(index+1)+" dari "+noOfBtns);
-        for(int i=0;i<noOfBtns;i++)
-        {
-            if(i==index)
-            {
-                btns[index].setBackgroundDrawable(getResources().getDrawable(R.drawable.box_blue));
-                btns[i].setTextColor(getResources().getColor(android.R.color.white));
-            }
-            else
-            {
-                btns[i].setBackgroundColor(getResources().getColor(android.R.color.transparent));
-                btns[i].setTextColor(getResources().getColor(android.R.color.black));
-            }
-        }
+        show_null = (TextView) findViewById(R.id.textView5);
+        if(noOfBtns != 0) {
 
+            title.setText("Halaman " + (index + 1) + " dari " + noOfBtns);
+            for (int i = 0; i < noOfBtns; i++) {
+                if (i == index) {
+                    btns[index].setBackgroundDrawable(getResources().getDrawable(R.drawable.box_blue));
+                    btns[i].setTextColor(getResources().getColor(android.R.color.white));
+                } else {
+                    btns[i].setBackgroundColor(getResources().getColor(android.R.color.transparent));
+                    btns[i].setTextColor(getResources().getColor(android.R.color.black));
+                }
+            }
+        }else{
+            show_null.setText("Belum ada aktivitas untuk saat ini");
+
+        }
     }
     /**
      * Method for loading data in listview
