@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SIPEJA.iml" filepath="$PROJECT_DIR$/SIPEJA.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SIPEJAB4T.iml" filepath="$PROJECT_DIR$/SIPEJAB4T.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
