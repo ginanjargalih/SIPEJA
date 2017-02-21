@@ -34,6 +34,7 @@ import com.example.android.sipeja.Login;
 import com.example.android.sipeja.Menu_utama;
 import com.example.android.sipeja.R;
 import com.example.android.sipeja.config.Config;
+import com.example.android.sipeja.order.Order;
 import com.example.android.sipeja.profile.Profile;
 
 import com.android.volley.Request;
@@ -52,14 +53,11 @@ import java.util.ArrayList;
 public class Log extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public static final String EXTRA_MESSAGE4 = "Log" ;
+    public static final String EXTRA_MESSAGE4  = "Log" ;
     static final int ACT2_REQUEST = 99;  // request code
 
     // gabung
     // deklarasi variabel
-    private EditText editTextId;
-    private Button buttonGet;
-    private TextView textViewResult;
     private ProgressDialog loading;
     public int hitungLog;
     private String username;
@@ -88,8 +86,6 @@ public class Log extends AppCompatActivity
         getData(); //masuk ke fungsi getData
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
-        setSupportActionBar(toolbar);
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Log Aktivitas");
 
@@ -184,9 +180,8 @@ public class Log extends AppCompatActivity
 
         if (id == R.id.nav_dashboard) {
             klikDashboard();
-
         } else if (id == R.id.nav_order) {
-
+            klikOrder();
         } else if (id == R.id.nav_notifikasi) {
 
         } else if (id == R.id.nav_log) {
@@ -360,6 +355,14 @@ public class Log extends AppCompatActivity
 
 
     //fungsi drawer
+    //untuk order
+    public void klikOrder() {
+        Intent intent = new Intent(this, Order.class);
+        //cara 2
+        intent.putExtra(Order.EXTRA_MESSAGE2, "Order");
+        startActivityForResult(intent, ACT2_REQUEST);
+    }
+
     //untuk dashboard
     public void klikDashboard() {
         Intent intent = new Intent(this, Menu_utama.class);
