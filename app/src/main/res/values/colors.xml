@@ -9,6 +9,9 @@
 
     <color name="colorKontak">#0f82de</color>
 
+    <color name="item_icon_colo">#90CAF9</color>
+    <color name="item_color">#000000</color>
+
 
     <color name="light_gray_color">#41e7eae9</color>
     <color name="red_color">#C8FF0000</color>

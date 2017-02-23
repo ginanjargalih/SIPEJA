@@ -20,6 +20,10 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_order"
-        app:menu="@menu/activity_order_drawer" />
+        app:menu="@menu/activity_order_drawer"
+
+        android:itemBackground="@drawable/signinbg"
+        app:itemIconTint="@color/item_icon_colo"
+        app:itemTextColor="@color/item_color"/>
 
 </android.support.v4.widget.DrawerLayout>

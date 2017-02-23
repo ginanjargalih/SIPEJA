@@ -21,6 +21,10 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_menu_utama"
         app:menu="@menu/activity_menu_utama_drawer"
+
+        android:itemBackground="@drawable/signinbg"
+        app:itemIconTint="@color/item_icon_colo"
+        app:itemTextColor="@color/item_color"
         />
 
 </android.support.v4.widget.DrawerLayout>
