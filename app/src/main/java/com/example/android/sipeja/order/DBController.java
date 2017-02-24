@@ -9,7 +9,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.example.android.sipeja.config.Config;
+
 public class DBController  extends SQLiteOpenHelper {
+
+
 
 	public DBController(Context applicationcontext) {
         super(applicationcontext, "transaksi.db", null, 1);
@@ -18,7 +22,7 @@ public class DBController  extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase database) {
 		String query;
-		query = "CREATE TABLE transaksi ( transaksiId INTEGER, transaksiName TEXT, UNIQUE(transaksiId, transaksiName) ON CONFLICT REPLACE)";
+		query = "CREATE TABLE transaksi ( transaksiId INTEGER, transaksiName TEXT,Nama_Perusahaan TEXT, UNIQUE(transaksiId, transaksiName) ON CONFLICT REPLACE)";
         database.execSQL(query);
 	}
 	@Override
@@ -39,6 +43,7 @@ public class DBController  extends SQLiteOpenHelper {
 		ContentValues values = new ContentValues();
 		values.put("transaksiId", queryValues.get("transaksiId"));
 		values.put("transaksiName", queryValues.get("transaksiName"));
+		values.put("Nama_Perusahaan", queryValues.get("Nama_Perusahaan"));
 		database.insertWithOnConflict("transaksi", null, values,SQLiteDatabase.CONFLICT_REPLACE);
 		database.close();
 	}
@@ -48,6 +53,9 @@ public class DBController  extends SQLiteOpenHelper {
 	 * @return
 	 */
 	public ArrayList<HashMap<String, String>> getAllUsers() {
+		//untuk jumlah transaksi
+		Config.index = 0;
+
 		ArrayList<HashMap<String, String>> usersList;
 		usersList = new ArrayList<HashMap<String, String>>();
 		String selectQuery = "SELECT  * FROM transaksi";
@@ -58,9 +66,13 @@ public class DBController  extends SQLiteOpenHelper {
 	        	HashMap<String, String> map = new HashMap<String, String>();
 	        	map.put("transaksiId", cursor.getString(0));
 	        	map.put("transaksiName", cursor.getString(1));
+	        	map.put("Nama_Perusahaan", cursor.getString(2));
                 usersList.add(map);
+
+				Config.index = Config.index + 1;
+
 	        } while (cursor.moveToNext());
-	    }
+		}
 	    database.close();
 	    return usersList;
 	}

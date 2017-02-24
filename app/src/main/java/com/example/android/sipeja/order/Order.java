@@ -58,6 +58,8 @@ public class Order extends AppCompatActivity
     public static final String EXTRA_MESSAGE2 = "Order" ;
     static final int ACT2_REQUEST = 99;  // request code
 
+    private TextView title;
+
     // DB Class to perform DB related operations
     DBController controller = new DBController(this);
     // Progress Dialog Object
@@ -133,9 +135,10 @@ public class Order extends AppCompatActivity
         ArrayList<HashMap<String, String>> userList = controller.getAllUsers();
         // If users exists in SQLite DB
         if (userList.size() != 0) {
+
             // Set the User Array list in ListView
             ListAdapter adapter = new SimpleAdapter(Order.this, userList, R.layout.order_item_list_content, new String[] {
-                    "transaksiId","transaksiName" }, new int[] { R.id.nomor, R.id.no_transaksi });
+                    "Nama_Perusahaan","transaksiName" }, new int[] { R.id.nomor, R.id.no_transaksi });
             final ListView myList = (ListView) findViewById(android.R.id.list);
             myList.setAdapter(adapter);
 
@@ -167,6 +170,8 @@ public class Order extends AppCompatActivity
         // Remote MySQL DB
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis() + 5000, 10 * 1000, pendingIntent);
 
+        title = (TextView) findViewById(R.id.title);
+        title.setText("Terdapat " + Config.index +" transaksi");
 
     }
 
@@ -343,12 +348,15 @@ public class Order extends AppCompatActivity
                     JSONObject obj = (JSONObject) arr.get(i);
                     System.out.println(obj.get("userId"));
                     System.out.println(obj.get("userName"));
+                    System.out.println(obj.get("nama_pelanggan"));
                     // DB QueryValues Object to insert into SQLite
                     queryValues = new HashMap<String, String>();
                     // Add userID extracted from Object
                     queryValues.put("transaksiId", obj.get("userId").toString());
                     // Add userName extracted from Object
                     queryValues.put("transaksiName", obj.get("userName").toString());
+                    // Add Nama_Pelanggan extracted from Object
+                    queryValues.put("Nama_Perusahaan", obj.get("nama_pelanggan").toString());
                     // Insert User into SQLite DB
                     controller.insertUser(queryValues);
                     HashMap<String, String> map = new HashMap<String, String>();

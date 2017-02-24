@@ -52,6 +52,8 @@ public class Menu_utama extends AppCompatActivity
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("SIPEJA");
 
+
+
         //warna status bar
         if(Build.VERSION.SDK_INT >= 21){
 

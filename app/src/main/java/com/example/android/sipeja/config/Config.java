@@ -27,4 +27,8 @@ public class Config {
 
     //We will use this to store the boolean in sharedpreference to track user is loggedin or not
     public static final String LOGGEDIN_SHARED_PREF = "loggedin";
+
+    //untuk menghitung jumlah transaksi
+    public  static Integer index = 0;
+
 }
