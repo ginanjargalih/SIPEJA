@@ -39,22 +39,7 @@ public class Profile extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimaryDark));
         }
-
-        //untuk toolbar
-        //Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar2);
-        //setSupportActionBar(myToolbar);
-        //getSupportActionBar().setTitle("Profil");
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-
-       /* myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                klikKembali();
-            }
-        });*/
-
+        
 
         //ambil intent
         Intent intent = getIntent();
