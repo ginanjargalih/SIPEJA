@@ -41,19 +41,19 @@ public class Profile extends AppCompatActivity {
         }
 
         //untuk toolbar
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar2);
-        setSupportActionBar(myToolbar);
-        getSupportActionBar().setTitle("Profil");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar2);
+        //setSupportActionBar(myToolbar);
+        //getSupportActionBar().setTitle("Profil");
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
-        myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+       /* myToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 klikKembali();
             }
-        });
+        });*/
 
 
         //ambil intent
@@ -70,13 +70,13 @@ public class Profile extends AppCompatActivity {
         String nip = sharedPreferences.getString(Config.NIP,"");
         String email = sharedPreferences.getString(Config.Email,"");
 
-        TextView txtView=(TextView)findViewById(R.id.nama);
+        TextView txtView=(TextView)findViewById(R.id.username);
         txtView.setText(user);
 
-        TextView txtView2=(TextView)findViewById(R.id.uNIP);
+        TextView txtView2=(TextView)findViewById(R.id.nip);
         txtView2.setText(nip);
 
-        TextView txtView3=(TextView)findViewById(R.id.uEmail);
+        TextView txtView3=(TextView)findViewById(R.id.email);
         txtView3.setText(email);
 
         //untuk foto
@@ -89,7 +89,7 @@ public class Profile extends AppCompatActivity {
     }
 
 
-    public void klikKembali() {
+    public void klikKembali(View view) {
         Intent intent2 = getIntent();
         intent2.putExtra(Menu_utama.EXTRA_MESSAGE5,"");
         setResult(RESULT_OK, intent2);
