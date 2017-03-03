@@ -709,12 +709,11 @@
 
 
     <!--****buy****-->
-    <TextView
+    <Button
         android:id="@+id/buy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#4c71f5"
-        android:text="BUY IT NOW"
         android:textSize="16dp"
         android:textColor="#fff"
         android:gravity="center"
@@ -722,15 +721,5 @@
         android:layout_alignParentBottom="true"
         />
 
-    <Button
-        android:text="Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button_dummy"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:onClick="panggil_fungsi"
-        android:visibility="gone" />
 
 </RelativeLayout>
