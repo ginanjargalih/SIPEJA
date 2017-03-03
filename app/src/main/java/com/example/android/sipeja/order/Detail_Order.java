@@ -668,6 +668,7 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
 
     }
 
+    //fungsi fungsi tombol
     // fungsi telepon
     public void telepon(View view) {
 
@@ -712,5 +713,14 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
         Intent refresh = new Intent(this, Detail_Order.class);
         startActivity(refresh);//Start the same Activity
         finish(); //finish Activity.
+    }
+
+    @Override
+    public void onBackPressed() {
+        Config.hitung = 0;
+        Intent intent2 = getIntent();
+        intent2.putExtra(Order.EXTRA_MESSAGE5, "");
+        setResult(RESULT_OK, intent2);
+        finish();
     }
 }
