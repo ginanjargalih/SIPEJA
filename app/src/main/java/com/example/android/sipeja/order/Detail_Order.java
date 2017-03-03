@@ -624,7 +624,7 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
 
             try {
                 if (result != null) {
-                    Toast.makeText(getApplicationContext(), result.getString("message"), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), result.getString("message"), Toast.LENGTH_LONG).show();
 
                     //sp
                     //Creating a shared preference
@@ -702,6 +702,32 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
 
     public void klikOrder(View view) {
         Config.hitung = 0;
+
+        //Creating a shared preference
+        SharedPreferences sharedPreferences = Detail_Order.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
+
+        //Creating editor to store values to shared preferences
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        //Adding values to editor
+        editor.putString(Config.kode_transaki,"");
+        editor.putString(Config.status_transaki, "");
+        editor.putString(Config.tanggal_transaksi,"");
+        editor.putString(Config.nama_lab,"");
+        editor.putString(Config.Pelanggan, "");
+        editor.putString(Config.nama_sertifikat,"");
+        editor.putString(Config.alamat_sertifikat,"");
+        editor.putString(Config.sertifikat_inggris,"");
+        editor.putString(Config.sisa_sampel,"");
+        editor.putString(Config.keterangan,"");
+        editor.putString(Config.nama_kontak,"");
+        editor.putString(Config.nomor_kontak,"");
+        editor.putString(Config.status_pembayaran,"");
+
+
+        //Saving values to editor
+        editor.commit();
+
         Intent intent2 = getIntent();
         intent2.putExtra(Order.EXTRA_MESSAGE5, "");
         setResult(RESULT_OK, intent2);
@@ -718,6 +744,33 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
     @Override
     public void onBackPressed() {
         Config.hitung = 0;
+
+        //Creating a shared preference
+        SharedPreferences sharedPreferences = Detail_Order.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
+
+        //Creating editor to store values to shared preferences
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        //Adding values to editor
+        editor.putString(Config.kode_transaki,"");
+        editor.putString(Config.status_transaki, "");
+        editor.putString(Config.tanggal_transaksi,"");
+        editor.putString(Config.nama_lab,"");
+        editor.putString(Config.Pelanggan, "");
+        editor.putString(Config.nama_sertifikat,"");
+        editor.putString(Config.alamat_sertifikat,"");
+        editor.putString(Config.sertifikat_inggris,"");
+        editor.putString(Config.sisa_sampel,"");
+        editor.putString(Config.keterangan,"");
+        editor.putString(Config.nama_kontak,"");
+        editor.putString(Config.nomor_kontak,"");
+        editor.putString(Config.status_pembayaran,"");
+
+
+        //Saving values to editor
+        editor.commit();
+
+
         Intent intent2 = getIntent();
         intent2.putExtra(Order.EXTRA_MESSAGE5, "");
         setResult(RESULT_OK, intent2);

@@ -152,11 +152,7 @@ public class Order extends AppCompatActivity
                 public void onItemClick(AdapterView<?> parent, View view,int position, long id){
                     HashMap<String,String> map =(HashMap<String,String>)myList.getItemAtPosition(position);
                     String isiBaris = map.get("transaksiName");
-                    String pesan ="Kode Transaksi : "+ isiBaris;
-                    Toast toast = Toast.makeText(getApplicationContext(), pesan, Toast.LENGTH_SHORT);
                     Config.kode = isiBaris;
-                    toast.show();
-
                     klikdetail();
                 }
             });
