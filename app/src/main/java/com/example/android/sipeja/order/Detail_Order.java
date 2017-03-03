@@ -62,11 +62,15 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail__order);
 
-        //panggil fungsi load data
-        login();
 
         //Creating a shared preference
         SharedPreferences sharedPreferences = Detail_Order.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
+
+        //panggil fungsi load data
+        if(Config.hitung == 0) {
+            load_data();
+        }
+
 
         //untuk status
         String angka = sharedPreferences.getString(Config.status_transaki,"");
@@ -565,7 +569,7 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
     }
 
     //untuk json
-    public void login() {
+    public void load_data() {
 
 
         final ProgressDialog ringProgressDialog = ProgressDialog.show(Detail_Order.this, "Mohon Tunggu", "Masuk ke Aplikasi", true);
@@ -648,6 +652,10 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
                     //Saving values to editor
                     editor.commit();
 
+                    //mulai ulang
+                    Config.hitung =1;
+                    refresh();
+
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Unable to retrieve any data from server", Toast.LENGTH_LONG).show();
@@ -689,5 +697,20 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
 
         /** Initiates the SMS compose screen, because the activity contain ACTION_VIEW and sms uri */
         startActivity(intent);
+    }
+
+    public void klikOrder(View view) {
+        Config.hitung = 0;
+        Intent intent2 = getIntent();
+        intent2.putExtra(Order.EXTRA_MESSAGE5, "");
+        setResult(RESULT_OK, intent2);
+        finish();
+
+    }
+
+    public void refresh(){
+        Intent refresh = new Intent(this, Detail_Order.class);
+        startActivity(refresh);//Start the same Activity
+        finish(); //finish Activity.
     }
 }
