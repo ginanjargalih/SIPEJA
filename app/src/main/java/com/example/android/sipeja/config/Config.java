@@ -18,6 +18,7 @@ public class Config {
     public static final String Password = "passKey";
     public static final String NIP = "nipKey";
     public static final String Email = "emailKey";
+    public static final String no_hp="123";
 
     //JSON for log actvitity
     public static final String KEY_USERNAME = "username";
@@ -30,5 +31,25 @@ public class Config {
 
     //untuk menghitung jumlah transaksi
     public  static Integer index = 0;
+
+
+    //untuk detail transaksi
+    public static String kode = "Kode_transaksi";
+
+    public  static final String kode_transaki="kode";
+    public  static final String status_transaki="1";
+    public  static  final String status_pembayaran ="status2";
+    public  static final String nama_lab="lab";
+    public  static final String tanggal_transaksi="tgl";
+    public  static final String Pelanggan="pel";
+    public  static final String nama_sertifikat="ns";
+    public  static final String alamat_sertifikat="as";
+    public  static final String sertifikat_inggris="ing";
+    public  static final String sisa_sampel="ss";
+    public  static final String keterangan="kt";
+    public  static final String nama_kontak="kontak";
+    public  static final String nomor_kontak="nomor";
+
+    public static int hitung=0;
 
 }

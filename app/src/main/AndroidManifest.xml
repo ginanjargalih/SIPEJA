@@ -3,6 +3,8 @@
     package="com.example.android.sipeja">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -36,11 +38,12 @@
         <activity
             android:name=".log_activity.Log"
             android:label="@string/title_activity_log"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".order.Order"
             android:label="@string/title_activity_order"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".order.Detail_Order"></activity>
     </application>
 
 </manifest>

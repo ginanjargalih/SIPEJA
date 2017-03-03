@@ -148,6 +148,7 @@ public class Login extends AppCompatActivity  {
                     editor.putString(Config.Email,result.getString("email"));
                     editor.putString(Config.NIP,result.getString("nip"));
                     editor.putString(Config.Password,inputPassword);
+                    editor.putString(Config.no_hp,result.getString("telepon"));
 
                     //Saving values to editor
                     editor.commit();

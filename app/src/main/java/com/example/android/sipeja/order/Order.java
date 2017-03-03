@@ -52,11 +52,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import com.example.android.sipeja.order.Detail_Order;
+
 public class Order extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static final String EXTRA_MESSAGE2 = "Order" ;
     static final int ACT2_REQUEST = 99;  // request code
+    public static final String EXTRA_MESSAGE5 = "Berhasil";
 
     private TextView title;
 
@@ -151,7 +154,10 @@ public class Order extends AppCompatActivity
                     String isiBaris = map.get("transaksiName");
                     String pesan ="Kode Transaksi : "+ isiBaris;
                     Toast toast = Toast.makeText(getApplicationContext(), pesan, Toast.LENGTH_SHORT);
+                    Config.kode = isiBaris;
                     toast.show();
+
+                    klikdetail();
                 }
             });
 
@@ -400,5 +406,13 @@ public class Order extends AppCompatActivity
     public void reloadActivity() {
         Intent objIntent = new Intent(getApplicationContext(), Order.class);
         startActivity(objIntent);
+    }
+
+    //untuk menampilkan detail
+    public void klikdetail() {
+        Intent intent = new Intent(this, Detail_Order.class);
+        //cara 2
+        intent.putExtra(Profile.EXTRA_MESSAGE5, "Detail Profil");
+        startActivityForResult(intent, ACT2_REQUEST);
     }
 }

@@ -15,4 +15,9 @@
 
     <color name="light_gray_color">#41e7eae9</color>
     <color name="red_color">#C8FF0000</color>
+
+    <color name="colorSub">#b0afaf</color>
+    <color name="colorTex">#585858</color>
+    <color name="colordevider">#64dad8d8</color>
+    <color name="colorblue">#4c71f5</color>
 </resources>

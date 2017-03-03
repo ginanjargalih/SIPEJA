@@ -39,7 +39,7 @@ public class Profile extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.colorPrimaryDark));
         }
-        
+
 
         //ambil intent
         Intent intent = getIntent();
@@ -54,6 +54,7 @@ public class Profile extends AppCompatActivity {
         String user = sharedPreferences.getString(Config.Name,"");
         String nip = sharedPreferences.getString(Config.NIP,"");
         String email = sharedPreferences.getString(Config.Email,"");
+        String nohp = sharedPreferences.getString(Config.no_hp,"");
 
         TextView txtView=(TextView)findViewById(R.id.username);
         txtView.setText(user);
@@ -63,6 +64,9 @@ public class Profile extends AppCompatActivity {
 
         TextView txtView3=(TextView)findViewById(R.id.email);
         txtView3.setText(email);
+
+        TextView txtView4=(TextView)findViewById(R.id.google1);
+        txtView4.setText(nohp);
 
         //untuk foto
         String s=user.substring(0,1);
