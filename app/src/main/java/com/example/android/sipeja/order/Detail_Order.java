@@ -793,6 +793,13 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
         editor.putString(Config.biaya_awal,"");
         editor.putString(Config.diskon,"");
 
+        editor.putString(Config.alamat_pelanggan,"");
+        editor.putString(Config.telepon_pelanggan,"");
+        editor.putString(Config.jenis_pelanggan,"");
+        editor.putString(Config.email_pelanggan,"");
+        editor.putString(Config.kota,"");
+        editor.putString(Config.provinsi,"");
+
 
         //Saving values to editor
         editor.commit();
@@ -832,6 +839,13 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
         editor.putString(Config.nominal,"");
         editor.putString(Config.biaya_awal,"");
         editor.putString(Config.diskon,"");
+
+        editor.putString(Config.alamat_pelanggan,"");
+        editor.putString(Config.telepon_pelanggan,"");
+        editor.putString(Config.jenis_pelanggan,"");
+        editor.putString(Config.email_pelanggan,"");
+        editor.putString(Config.kota,"");
+        editor.putString(Config.provinsi,"");
 
         //Saving values to editor
         editor.commit();
