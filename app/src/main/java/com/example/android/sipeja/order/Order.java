@@ -501,6 +501,15 @@ public class Order extends AppCompatActivity
                     editor.putString(Config.biaya_awal,result.getString("biaya_awal"));
                     editor.putString(Config.diskon,result.getString("diskon"));
 
+                    editor.putString(Config.alamat_pelanggan,result.getString("alamatPelanggan"));
+                    editor.putString(Config.telepon_pelanggan,result.getString("teleponPelanggan"));
+                    editor.putString(Config.jenis_pelanggan,result.getString("jenisPelanggan"));
+                    editor.putString(Config.email_pelanggan,result.getString("emailPelanggan"));
+                    editor.putString(Config.kota,result.getString("kotaPelanggan"));
+                    editor.putString(Config.provinsi,result.getString("propinsiPelanggan"));
+
+
+
 
                     //Saving values to editor
                     editor.commit();

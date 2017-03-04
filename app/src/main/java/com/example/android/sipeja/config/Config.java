@@ -54,6 +54,13 @@ public class Config {
     public static final String biaya_awal="biayaawal";
     public static final String diskon="diskon";
 
+    public static final String alamat_pelanggan="ap";
+    public static final String telepon_pelanggan="tp";
+    public static final String jenis_pelanggan="jp";
+    public static final String email_pelanggan="ep";
+    public static final String kota="k";
+    public static final String provinsi="p";
+
     public static int hitung=0;
 
 }

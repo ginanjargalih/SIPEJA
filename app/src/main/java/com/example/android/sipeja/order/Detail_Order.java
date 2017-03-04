@@ -49,6 +49,9 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
     LinearLayout linear3, showless2;
     LinearLayout linear4;
 
+    LinearLayout linear5, showless3;
+    LinearLayout linear6;
+
     private ExpandableHeightListView listview;
     private ArrayList<Bean> Bean;
     private JayBaseAdapter baseAdapter;
@@ -164,6 +167,36 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
             }
         });
 
+        //                ***********viewmore3**********
+
+        linear5 = (LinearLayout) findViewById(R.id.linear5);
+        showless3 = (LinearLayout) findViewById(R.id.showless3);
+
+        linear6 = (LinearLayout) findViewById(R.id.linear6);
+
+        linear5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                linear6.setVisibility(View.VISIBLE);
+                linear5.setVisibility(View.GONE);
+
+            }
+        });
+
+        showless3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                linear6.setVisibility(View.GONE);
+                linear5.setVisibility(View.VISIBLE);
+
+
+            }
+        });
+
         // ***********fungsi detail order
         //baca data
         String kode = sharedPreferences.getString(Config.kode_transaki, "");
@@ -182,6 +215,14 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
         String nominal = sharedPreferences.getString(Config.nominal,"");
         String biaya = sharedPreferences.getString(Config.biaya_awal,"");
         String diskon = sharedPreferences.getString(Config.diskon,"");
+
+        String alamat_pelanggan = sharedPreferences.getString(Config.alamat_pelanggan,"");
+        String kota_pelanggan = sharedPreferences.getString(Config.kota,"");
+        String provinsi_pelanggan = sharedPreferences.getString(Config.provinsi,"");
+
+        String telepon_pelanggan = sharedPreferences.getString(Config.telepon_pelanggan,"");
+        String jenis = sharedPreferences.getString(Config.jenis_pelanggan,"");
+        String email = sharedPreferences.getString(Config.email_pelanggan,"");
 
 
         number = sharedPreferences.getString(Config.nomor_kontak,"");
@@ -274,6 +315,29 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
 
         TextView txtView13 = (TextView) findViewById(R.id.video4);
         txtView13.setText(prezzo3);
+
+
+        //detail pelanggan
+        TextView txtView14 = (TextView) findViewById(R.id.display5);
+        txtView14.setText(pelanggan);
+
+        TextView txtView15 = (TextView) findViewById(R.id.camera5);
+        txtView15.setText(alamat_pelanggan);
+
+        TextView txtView16 = (TextView) findViewById(R.id.video8);
+        txtView16.setText(kota_pelanggan);
+
+        TextView txtView17 = (TextView) findViewById(R.id.video9);
+        txtView17.setText(provinsi_pelanggan);
+
+        TextView txtView18 = (TextView) findViewById(R.id.video5);
+        txtView18.setText(jenis);
+
+        TextView txtView19 = (TextView) findViewById(R.id.video6);
+        txtView19.setText(email);
+
+        TextView txtView20 = (TextView) findViewById(R.id.video7);
+        txtView20.setText(telepon_pelanggan);
 
     }
 
@@ -725,6 +789,10 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
         editor.putString(Config.nomor_kontak,"");
         editor.putString(Config.status_pembayaran,"");
 
+        editor.putString(Config.nominal,"");
+        editor.putString(Config.biaya_awal,"");
+        editor.putString(Config.diskon,"");
+
 
         //Saving values to editor
         editor.commit();
@@ -761,6 +829,9 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
         editor.putString(Config.nomor_kontak,"");
         editor.putString(Config.status_pembayaran,"");
 
+        editor.putString(Config.nominal,"");
+        editor.putString(Config.biaya_awal,"");
+        editor.putString(Config.diskon,"");
 
         //Saving values to editor
         editor.commit();

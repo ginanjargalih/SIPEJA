@@ -625,6 +625,299 @@
 
 
                 <!--*********VIEW MORE**********-->
+                <View
+                    android:layout_marginTop="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colordevider"
+                    android:padding="16dp"
+                    />
+
+                <!--*********discription**********-->
+
+                <LinearLayout
+                    android:id="@+id/linear5"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Detail Pelanggan"
+                        android:textColor="@color/colorSub"
+                        android:drawableRight="@drawable/arrow2"
+
+                        />
+
+                </LinearLayout>
+
+                <!--*********VIEW MORE**********-->
+
+
+
+                <LinearLayout
+                    android:id="@+id/linear6"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!--*********show less**********-->
+
+                    <LinearLayout
+                        android:id="@+id/showless3"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Detail Pelanggan"
+                            android:textColor="@color/colorSub"
+                            android:drawableRight="@drawable/arrow"
+
+                            />
+
+                    </LinearLayout>
+
+                    <!--*********weight**********-->
+
+                    <LinearLayout
+
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nama"
+                            android:textColor="@color/colorSub"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/display5"
+                            android:layout_weight="0.5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/colorTex"
+
+                            />
+                    </LinearLayout>
+
+
+                    <!--*********camera**********-->
+
+                    <LinearLayout
+
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Alamat"
+                            android:textColor="@color/colorSub"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/camera5"
+                            android:layout_weight="0.5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/colorTex"
+
+                            />
+                    </LinearLayout>
+
+                    <!--*********kota**********-->
+                    <LinearLayout
+
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Kota"
+                            android:textColor="@color/colorSub"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/video8"
+                            android:layout_weight="0.5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/colorTex"
+
+                            />
+                    </LinearLayout>
+
+                    <!--*********propinsi**********-->
+                    <LinearLayout
+
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Provinsi"
+                            android:textColor="@color/colorSub"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/video9"
+                            android:layout_weight="0.5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/colorTex"
+
+                            />
+                    </LinearLayout>
+
+
+                    <!--*********video**********-->
+
+                    <LinearLayout
+
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Jenis"
+                            android:textColor="@color/colorSub"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/video5"
+                            android:layout_weight="0.5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/colorTex"
+
+                            />
+                    </LinearLayout>
+
+                    <!--*********email**********-->
+                    <LinearLayout
+
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Email"
+                            android:textColor="@color/colorSub"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/video6"
+                            android:layout_weight="0.5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/colorTex"
+
+                            />
+                    </LinearLayout>
+
+                    <!--*********telepon**********-->
+                    <LinearLayout
+
+                        android:layout_marginTop="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+
+                        <TextView
+                            android:layout_weight="1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Telepon"
+                            android:textColor="@color/colorSub"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/video7"
+                            android:layout_weight="0.5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/colorTex"
+
+                            />
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+                <!--*********VIEW MORE**********-->
+
 
                 <View
                     android:layout_marginTop="16dp"
