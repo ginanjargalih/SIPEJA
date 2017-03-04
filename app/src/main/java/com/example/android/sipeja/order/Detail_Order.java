@@ -29,6 +29,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 
 import com.example.android.sipeja.JSONParser;
@@ -43,6 +45,9 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
 
     LinearLayout linear1, showless, review;
     LinearLayout linear2;
+
+    LinearLayout linear3, showless2;
+    LinearLayout linear4;
 
     private ExpandableHeightListView listview;
     private ArrayList<Bean> Bean;
@@ -129,6 +134,36 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
             }
         });
 
+        //                ***********viewmore2**********
+
+        linear3 = (LinearLayout) findViewById(R.id.linear3);
+        showless2 = (LinearLayout) findViewById(R.id.showless2);
+
+        linear4 = (LinearLayout) findViewById(R.id.linear4);
+
+        linear3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                linear4.setVisibility(View.VISIBLE);
+                linear3.setVisibility(View.GONE);
+
+            }
+        });
+
+        showless2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                linear4.setVisibility(View.GONE);
+                linear3.setVisibility(View.VISIBLE);
+
+
+            }
+        });
+
         // ***********fungsi detail order
         //baca data
         String kode = sharedPreferences.getString(Config.kode_transaki, "");
@@ -143,6 +178,12 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
         String ket = sharedPreferences.getString(Config.keterangan, "");
         String cp = sharedPreferences.getString(Config.nama_kontak, "");
         String stp = sharedPreferences.getString(Config.status_pembayaran,"");
+
+        String nominal = sharedPreferences.getString(Config.nominal,"");
+        String biaya = sharedPreferences.getString(Config.biaya_awal,"");
+        String diskon = sharedPreferences.getString(Config.diskon,"");
+
+
         number = sharedPreferences.getString(Config.nomor_kontak,"");
 
         if (stp.equals("1")){
@@ -198,6 +239,41 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
         TextView txtView10 = (TextView) findViewById(R.id.return2);
         txtView10.setText(cp);
 
+
+        //nominal
+        int convertedVal = Integer.parseInt(nominal);
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols();
+        symbols.setDecimalSeparator(',');
+
+        DecimalFormat decimalFormat = new DecimalFormat("Rp #,###.00", symbols);
+        String prezzo = decimalFormat.format(convertedVal);
+
+        TextView txtView11 = (TextView) findViewById(R.id.display4);
+        txtView11.setText(prezzo);
+
+        //biaya awal
+        int convertedVal2 = Integer.parseInt(biaya);
+        DecimalFormatSymbols symbols2 = new DecimalFormatSymbols();
+        symbols2.setDecimalSeparator(',');
+
+        DecimalFormat decimalFormat2 = new DecimalFormat("Rp #,###.00", symbols2);
+        String prezzo2 = decimalFormat2.format(convertedVal2);
+
+        TextView txtView12 = (TextView) findViewById(R.id.camera4);
+        txtView12.setText(prezzo2);
+
+
+        //diskon
+        int convertedVal3 = Integer.parseInt(diskon);
+        DecimalFormatSymbols symbols3 = new DecimalFormatSymbols();
+        symbols2.setDecimalSeparator(',');
+
+        DecimalFormat decimalFormat3 = new DecimalFormat("Rp #,###.00", symbols3);
+        String prezzo3 = decimalFormat3.format(convertedVal3);
+
+
+        TextView txtView13 = (TextView) findViewById(R.id.video4);
+        txtView13.setText(prezzo3);
 
     }
 
@@ -659,7 +735,7 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
         finish();
 
     }
-    
+
     @Override
     public void onBackPressed() {
         Config.hitung = 0;

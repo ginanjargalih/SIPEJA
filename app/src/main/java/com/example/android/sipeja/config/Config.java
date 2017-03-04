@@ -50,6 +50,10 @@ public class Config {
     public  static final String nama_kontak="kontak";
     public  static final String nomor_kontak="nomor";
 
+    public static final String nominal="nominal";
+    public static final String biaya_awal="biayaawal";
+    public static final String diskon="diskon";
+
     public static int hitung=0;
 
 }

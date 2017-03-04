@@ -497,6 +497,10 @@ public class Order extends AppCompatActivity
                     editor.putString(Config.nomor_kontak, result.getString("nomerTelepon"));
                     editor.putString(Config.status_pembayaran,result.getString("Status_pembayaran"));
 
+                    editor.putString(Config.nominal,result.getString("nominal"));
+                    editor.putString(Config.biaya_awal,result.getString("biaya_awal"));
+                    editor.putString(Config.diskon,result.getString("diskon"));
+
 
                     //Saving values to editor
                     editor.commit();
