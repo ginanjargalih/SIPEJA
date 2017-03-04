@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -44,6 +45,8 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,6 +56,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 import com.example.android.sipeja.order.Detail_Order;
+import com.example.android.sipeja.JSONParser;
 
 public class Order extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -68,6 +72,12 @@ public class Order extends AppCompatActivity
     // Progress Dialog Object
     ProgressDialog prgDialog;
     HashMap<String, String> queryValues;
+
+    //untuk detail transaksi
+    String text = Config.kode;
+    String URL = Config.URL + "API_transaksi/index.php";
+    JSONParser jsonParser = new JSONParser();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,8 +162,9 @@ public class Order extends AppCompatActivity
                 public void onItemClick(AdapterView<?> parent, View view,int position, long id){
                     HashMap<String,String> map =(HashMap<String,String>)myList.getItemAtPosition(position);
                     String isiBaris = map.get("transaksiName");
+
                     Config.kode = isiBaris;
-                    klikdetail();
+                    load_data();
                 }
             });
 
@@ -402,6 +413,109 @@ public class Order extends AppCompatActivity
     public void reloadActivity() {
         Intent objIntent = new Intent(getApplicationContext(), Order.class);
         startActivity(objIntent);
+    }
+
+
+    //untuk detail order
+//untuk json
+    public void load_data() {
+
+
+        final ProgressDialog ringProgressDialog = ProgressDialog.show(Order.this, "", "Mengambil data", true);
+        ringProgressDialog.setCancelable(true);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                    AttemptLogin attemptLogin = new AttemptLogin();
+                    attemptLogin.execute(Config.kode, "");
+
+
+                } catch (Exception e) {
+
+                }
+                ringProgressDialog.dismiss();
+            }
+        }).start();
+    }
+
+    private class AttemptLogin extends AsyncTask<String, String, JSONObject> {
+
+        @Override
+
+        protected void onPreExecute() {
+
+            super.onPreExecute();
+
+        }
+
+        @Override
+
+        protected JSONObject doInBackground(String... args) {
+
+            String kode = args[0];
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("kode", kode));
+
+            JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
+
+
+            return json;
+
+        }
+
+        protected void onPostExecute(JSONObject result) {
+
+            // dismiss the dialog once product deleted
+            //Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
+
+            try {
+                if (result != null) {
+                    //Toast.makeText(getApplicationContext(), result.getString("message"), Toast.LENGTH_LONG).show();
+
+                    //sp
+                    //Creating a shared preference
+                    SharedPreferences sharedPreferences = Order.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
+
+                    //Creating editor to store values to shared preferences
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                    //Adding values to editor
+                    editor.putString(Config.kode_transaki, result.getString("kodeTransaksi"));
+                    editor.putString(Config.status_transaki, result.getString("status_transaksi"));
+                    editor.putString(Config.tanggal_transaksi,result.getString("tanggalT"));
+                    editor.putString(Config.nama_lab, result.getString("NamaLab"));
+                    editor.putString(Config.Pelanggan, result.getString("NamaPelanggan"));
+                    editor.putString(Config.nama_sertifikat, result.getString("nama_sertifikat"));
+                    editor.putString(Config.alamat_sertifikat, result.getString("alamat_sertifikat"));
+                    editor.putString(Config.sertifikat_inggris, result.getString("sertifikat_dalam_inggris"));
+                    editor.putString(Config.sisa_sampel, result.getString("sisa_sampel"));
+                    editor.putString(Config.keterangan, result.getString("keterangan"));
+                    editor.putString(Config.nama_kontak, result.getString("namaCP"));
+                    editor.putString(Config.nomor_kontak, result.getString("nomerTelepon"));
+                    editor.putString(Config.status_pembayaran,result.getString("Status_pembayaran"));
+
+
+                    //Saving values to editor
+                    editor.commit();
+
+                    //buka detail
+                    klikdetail();
+
+
+
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Unable to retrieve any data from server", Toast.LENGTH_LONG).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
     }
 
     //untuk menampilkan detail

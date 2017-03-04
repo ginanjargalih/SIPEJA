@@ -38,10 +38,6 @@ import com.example.android.sipeja.config.Config;
 public class Detail_Order extends AppCompatActivity implements BaseSliderView.OnSliderClickListener {
     private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 99;
 
-    //untuk detail transaksi
-    String text = Config.kode;
-    String URL = Config.URL + "API_transaksi/index.php";
-    JSONParser jsonParser = new JSONParser();
 
     String number;
 
@@ -76,11 +72,6 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
 
         //Creating a shared preference
         SharedPreferences sharedPreferences = Detail_Order.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
-
-        //panggil fungsi load data
-        if(Config.hitung == 0) {
-            load_data();
-        }
 
 
         //untuk status
@@ -600,105 +591,7 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
         }
     }
 
-    //untuk json
-    public void load_data() {
 
-
-        final ProgressDialog ringProgressDialog = ProgressDialog.show(Detail_Order.this, "Mohon Tunggu", "Masuk ke Aplikasi", true);
-        ringProgressDialog.setCancelable(true);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(3000);
-                    AttemptLogin attemptLogin = new AttemptLogin();
-                    attemptLogin.execute(text, "");
-
-
-                } catch (Exception e) {
-
-                }
-                ringProgressDialog.dismiss();
-            }
-        }).start();
-    }
-
-    private class AttemptLogin extends AsyncTask<String, String, JSONObject> {
-
-        @Override
-
-        protected void onPreExecute() {
-
-            super.onPreExecute();
-
-        }
-
-        @Override
-
-        protected JSONObject doInBackground(String... args) {
-
-            String kode = args[0];
-
-            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("kode", kode));
-
-            JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
-
-
-            return json;
-
-        }
-
-        protected void onPostExecute(JSONObject result) {
-
-            // dismiss the dialog once product deleted
-            //Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
-
-            try {
-                if (result != null) {
-                    //Toast.makeText(getApplicationContext(), result.getString("message"), Toast.LENGTH_LONG).show();
-
-                    //sp
-                    //Creating a shared preference
-                    SharedPreferences sharedPreferences = Detail_Order.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
-
-                    //Creating editor to store values to shared preferences
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-
-                    //Adding values to editor
-                    editor.putString(Config.kode_transaki, result.getString("kodeTransaksi"));
-                    editor.putString(Config.status_transaki, result.getString("status_transaksi"));
-                    editor.putString(Config.tanggal_transaksi,result.getString("tanggalT"));
-                    editor.putString(Config.nama_lab, result.getString("NamaLab"));
-                    editor.putString(Config.Pelanggan, result.getString("NamaPelanggan"));
-                    editor.putString(Config.nama_sertifikat, result.getString("nama_sertifikat"));
-                    editor.putString(Config.alamat_sertifikat, result.getString("alamat_sertifikat"));
-                    editor.putString(Config.sertifikat_inggris, result.getString("sertifikat_dalam_inggris"));
-                    editor.putString(Config.sisa_sampel, result.getString("sisa_sampel"));
-                    editor.putString(Config.keterangan, result.getString("keterangan"));
-                    editor.putString(Config.nama_kontak, result.getString("namaCP"));
-                    editor.putString(Config.nomor_kontak, result.getString("nomerTelepon"));
-                    editor.putString(Config.status_pembayaran,result.getString("Status_pembayaran"));
-
-
-                    //Saving values to editor
-                    editor.commit();
-
-                    //mulai ulang
-                    Config.hitung =1;
-                    refresh();
-
-
-                } else {
-                    Toast.makeText(getApplicationContext(), "Unable to retrieve any data from server", Toast.LENGTH_LONG).show();
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-        }
-
-    }
 
     //fungsi fungsi tombol
     // fungsi telepon
