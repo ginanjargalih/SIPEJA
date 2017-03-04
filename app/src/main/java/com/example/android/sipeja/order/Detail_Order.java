@@ -659,13 +659,7 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
         finish();
 
     }
-
-    public void refresh(){
-        Intent refresh = new Intent(this, Detail_Order.class);
-        startActivity(refresh);//Start the same Activity
-        finish(); //finish Activity.
-    }
-
+    
     @Override
     public void onBackPressed() {
         Config.hitung = 0;
