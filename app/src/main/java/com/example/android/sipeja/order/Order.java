@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -111,7 +113,13 @@ public class Order extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 // Transfer data from remote MySQL DB to SQLite on Android and perform Sync
-                syncSQLiteMySQLDB();
+                if(Config.hitung2 == 0){
+                    syncSQLiteMySQLDB();
+                }
+                else if(Config.hitung2 != 0) {
+                    dropTable();
+                }
+
             }
         });
 
@@ -162,7 +170,6 @@ public class Order extends AppCompatActivity
                 public void onItemClick(AdapterView<?> parent, View view,int position, long id){
                     HashMap<String,String> map =(HashMap<String,String>)myList.getItemAtPosition(position);
                     String isiBaris = map.get("transaksiName");
-
                     Config.kode = isiBaris;
                     load_data();
                 }
@@ -185,6 +192,7 @@ public class Order extends AppCompatActivity
 
         title = (TextView) findViewById(R.id.title);
         title.setText("Terdapat " + Config.index +" transaksi");
+        //title.setText("DB Veri saat ini : " + Config.db_version);
 
     }
 
@@ -311,6 +319,7 @@ public class Order extends AppCompatActivity
     //untuk sinkron
     // Method to Sync MySQL to SQLite DB
     public void syncSQLiteMySQLDB() {
+
         // Create AsycHttpClient object
         AsyncHttpClient client = new AsyncHttpClient();
         // Http Request Params Object
@@ -413,7 +422,16 @@ public class Order extends AppCompatActivity
     public void reloadActivity() {
         Intent objIntent = new Intent(getApplicationContext(), Order.class);
         startActivity(objIntent);
+
+        Config.hitung2 = 1;
     }
+
+    private void dropTable() {
+        this.deleteDatabase("transaksi.db");
+
+        syncSQLiteMySQLDB();
+    }
+
 
 
     //untuk detail order
