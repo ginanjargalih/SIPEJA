@@ -24,7 +24,6 @@ public class Config {
     public static final String KEY_USERNAME = "username";
     public static final String KEY_AKTIVITAS = "aktivitas";
     public static final String KEY_WAKTU = "updated_at";
-    public static final String JSON_ARRAY = "result";
 
     //We will use this to store the boolean in sharedpreference to track user is loggedin or not
     public static final String LOGGEDIN_SHARED_PREF = "loggedin";
@@ -66,4 +65,9 @@ public class Config {
     public static int hitung=0;
     public static int hitung2=0;
 
+    //untuk log transaksi
+    public static final String Transaksi_id = "transaksiId";
+    public static final String Transaksi_orang="name";
+    public static final String Transaksi_AKTIVITAS = "aktivitas";
+    public static final String Transaksi_WAKTU = "updated_at";
 }

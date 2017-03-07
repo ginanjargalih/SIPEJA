@@ -36,9 +36,14 @@ import java.util.ArrayList;
 import com.example.android.sipeja.JSONParser;
 import com.example.android.sipeja.R;
 import com.example.android.sipeja.config.Config;
+import com.example.android.sipeja.profile.Profile;
 
 public class Detail_Order extends AppCompatActivity implements BaseSliderView.OnSliderClickListener {
     private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 99;
+
+    public static final String EXTRA_MESSAGE3 = "Log_transaksi" ;
+    static final int ACT2_REQUEST = 99;  // request code
+    public static final String EXTRA_MESSAGE6 = "Berhasil";
 
 
     String number;
@@ -861,5 +866,13 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
         intent2.putExtra(Order.EXTRA_MESSAGE5, "");
         setResult(RESULT_OK, intent2);
         finish();
+    }
+
+    //untuk menampilkan detail
+    public void klik_log(View view) {
+        Intent intent = new Intent(this, Log_Transaksi.class);
+        //cara 2
+        intent.putExtra(Log_Transaksi.EXTRA_MESSAGE6, "Log Transaksi");
+        startActivityForResult(intent, ACT2_REQUEST);
     }
 }

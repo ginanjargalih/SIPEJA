@@ -76,6 +76,7 @@
                 android:layout_height="25dp"
                 android:src="@drawable/log2"
                 android:layout_gravity="center"
+                android:onClick="klik_log"
                 />
                 </LinearLayout>
 

@@ -43,7 +43,8 @@
             android:name=".order.Order"
             android:label="@string/title_activity_order"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".order.Detail_Order"></activity>
+        <activity android:name=".order.Detail_Order" />
+        <activity android:name=".order.Log_Transaksi"></activity>
     </application>
 
 </manifest>
