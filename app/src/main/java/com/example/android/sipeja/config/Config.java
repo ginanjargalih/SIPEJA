@@ -36,6 +36,7 @@ public class Config {
     //untuk detail transaksi
     public static String kode = "Kode_transaksi";
 
+    public static final String id_transaksi="id";
     public  static final String kode_transaki="kode";
     public  static final String status_transaki="1";
     public  static  final String status_pembayaran ="status2";

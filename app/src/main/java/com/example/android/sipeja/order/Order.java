@@ -501,6 +501,7 @@ public class Order extends AppCompatActivity
                     SharedPreferences.Editor editor = sharedPreferences.edit();
 
                     //Adding values to editor
+                    editor.putString(Config.id_transaksi, result.getString("idTransaksi"));
                     editor.putString(Config.kode_transaki, result.getString("kodeTransaksi"));
                     editor.putString(Config.status_transaki, result.getString("status_transaksi"));
                     editor.putString(Config.tanggal_transaksi,result.getString("tanggalT"));
