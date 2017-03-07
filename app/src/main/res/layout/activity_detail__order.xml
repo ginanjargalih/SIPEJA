@@ -66,11 +66,9 @@
                         />
 
                     <TextView
-                        android:id="@+id/price"
                         android:layout_weight="5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="..."
                         android:textSize="21dp"
                         android:textColor="@color/colorTex"
                         />

@@ -204,7 +204,6 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
 
         // ***********fungsi detail order
         //baca data
-        String id = sharedPreferences.getString(Config.id_transaksi, "");
         String kode = sharedPreferences.getString(Config.kode_transaki, "");
         String status_t = sharedPreferences.getString(Config.status_transaki, "");
         String lab = sharedPreferences.getString(Config.nama_lab, "");
@@ -345,8 +344,6 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
         TextView txtView20 = (TextView) findViewById(R.id.video7);
         txtView20.setText(telepon_pelanggan);
 
-        TextView txtView21 = (TextView) findViewById(R.id.price);
-        txtView21.setText(id);
 
     }
 
