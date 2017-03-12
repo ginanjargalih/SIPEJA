@@ -19,7 +19,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -34,7 +33,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-
 
 public class Log_Transaksi extends AppCompatActivity{
 
@@ -61,7 +59,6 @@ public class Log_Transaksi extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log__transaksi);
 
-
         getData(); //masuk ke fungsi getData
 
         //warna status bar
@@ -77,7 +74,6 @@ public class Log_Transaksi extends AppCompatActivity{
         SharedPreferences sharedPreferences = Log_Transaksi.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
         id = sharedPreferences.getString(Config.id_transaksi, "");
     }
-
 
 
     //content

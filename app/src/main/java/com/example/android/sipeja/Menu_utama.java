@@ -8,6 +8,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +35,7 @@ import com.example.android.sipeja.profile.Profile;
 
 
 public class Menu_utama extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,TabLayout.OnTabSelectedListener {
 
     //untuk extramassge
     public static final String EXTRA_MESSAGE1 = "Dashboard" ;
@@ -44,6 +46,12 @@ public class Menu_utama extends AppCompatActivity
     public static final String EXTRA_MESSAGE6 = "Keluar" ;
     static final int ACT2_REQUEST = 99;  // request code
 
+    //This is our tablayout
+    private TabLayout tabLayout;
+
+    //This is our viewPager
+    private ViewPager viewPager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,8 +59,6 @@ public class Menu_utama extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("SIPEJA");
-
-
 
         //warna status bar
         if(Build.VERSION.SDK_INT >= 21){
@@ -70,6 +76,50 @@ public class Menu_utama extends AppCompatActivity
         //baca data
         String user = sharedPreferences.getString(Config.Name,"");
         String email = sharedPreferences.getString(Config.Email,"");
+
+        //Initializing the tablayout
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+
+        //Adding the tabs using addTab() method for Dashboard
+        tabLayout.addTab(tabLayout.newTab().setText("Status Order"));
+        tabLayout.addTab(tabLayout.newTab().setText("SPM"));
+        tabLayout.addTab(tabLayout.newTab().setText("Pendapatan"));
+        tabLayout.addTab(tabLayout.newTab().setText("Status Pembayaran"));
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        //Initializing viewPager
+        viewPager = (ViewPager) findViewById(R.id.pager);
+
+        //Creating our pager adapter
+        Pager adapter = new Pager(getSupportFragmentManager(), tabLayout.getTabCount());
+
+        //Adding adapter to pager
+        viewPager.setAdapter(adapter);
+
+        //Adding onTabSelectedListener to swipe views
+        tabLayout.setOnTabSelectedListener(this);
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -229,6 +279,21 @@ public class Menu_utama extends AppCompatActivity
         //Showing the alert dialog
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
 
     }
 }
