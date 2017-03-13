@@ -277,7 +277,7 @@ public class Status_Pembayaran extends Fragment {
     private SpannableString generateCenterSpannableText() {
 
         SpannableString s = new SpannableString("Status\nPembayaran");
-        s.setSpan(new RelativeSizeSpan(1.7f), 0, 17, 0);
+        //s.setSpan(new RelativeSizeSpan(1.7f), 0, 17, 0);
         //s.setSpan(new StyleSpan(Typeface.NORMAL), 3, s.length() - 10, 0);
         //s.setSpan(new ForegroundColorSpan(Color.GRAY), 3, s.length() - 4, 0);
         //s.setSpan(new RelativeSizeSpan(.8f), 14, s.length() - 15, 0);
