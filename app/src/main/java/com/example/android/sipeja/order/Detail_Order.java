@@ -1,16 +1,12 @@
 package com.example.android.sipeja.order;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Typeface;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
-import android.provider.Telephony;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,23 +16,17 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
-
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 
-import com.example.android.sipeja.JSONParser;
+
 import com.example.android.sipeja.R;
 import com.example.android.sipeja.config.Config;
-import com.example.android.sipeja.profile.Profile;
+
 
 public class Detail_Order extends AppCompatActivity implements BaseSliderView.OnSliderClickListener {
     private static final int MY_PERMISSIONS_REQUEST_CALL_PHONE = 99;
@@ -282,8 +272,8 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
         TextView txtView9 = (TextView) findViewById(R.id.video2);
         txtView9.setText(ket);
 
-        TextView txtView10 = (TextView) findViewById(R.id.return2);
-        txtView10.setText(cp);
+        //TextView txtView10 = (TextView) findViewById(R.id.return2);
+        //txtView10.setText(cp);
 
 
         //nominal

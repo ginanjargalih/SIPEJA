@@ -6,11 +6,11 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="50dp"
+        android:layout_width="88dp"
         android:layout_height="75dp"
-        android:src="@drawable/bullet"
+        android:layout_gravity="center"
         android:padding="5dp"
-        android:layout_gravity="center"/>
+        android:src="@drawable/bullet" />
 
 
     <LinearLayout

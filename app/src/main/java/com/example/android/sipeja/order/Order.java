@@ -57,7 +57,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
-import com.example.android.sipeja.order.Detail_Order;
 import com.example.android.sipeja.JSONParser;
 
 public class Order extends AppCompatActivity
