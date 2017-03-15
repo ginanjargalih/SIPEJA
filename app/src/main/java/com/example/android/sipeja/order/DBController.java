@@ -77,4 +77,29 @@ public class DBController  extends SQLiteOpenHelper {
 		return usersList;
 	}
 
+	public ArrayList<HashMap<String, String>> searchUser(String search) {
+		//untuk jumlah transaksi
+		Config.index = 0;
+
+		ArrayList<HashMap<String, String>> usersList;
+		usersList = new ArrayList<HashMap<String, String>>();
+		String selectQuery = "SELECT  * FROM transaksi WHERE Nama_Perusahaan " + "  LIKE  '%" + search + "%' ";
+		SQLiteDatabase database = this.getWritableDatabase();
+		Cursor cursor = database.rawQuery(selectQuery, null);
+		if (cursor.moveToFirst()) {
+			do {
+				HashMap<String, String> map = new HashMap<String, String>();
+				map.put("transaksiId", cursor.getString(0));
+				map.put("transaksiName", cursor.getString(1));
+				map.put("Nama_Perusahaan", cursor.getString(2));
+				usersList.add(map);
+
+				Config.index = Config.index + 1;
+
+			} while (cursor.moveToNext());
+		}
+		database.close();
+		return usersList;
+	}
+
 }

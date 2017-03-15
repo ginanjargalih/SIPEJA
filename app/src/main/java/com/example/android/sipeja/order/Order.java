@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -80,6 +81,7 @@ public class Order extends AppCompatActivity
     String URL = Config.URL + "API_transaksi/index.php";
     JSONParser jsonParser = new JSONParser();
 
+    private final static String TAG= Order.class.getName().toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -210,6 +212,54 @@ public class Order extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.order, menu);
+        SearchManager manager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView search = (SearchView) menu.findItem(R.id.search).getActionView();
+        search.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
+
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                android.util.Log.d(TAG, "onQueryTextSubmit ");
+                // Get User records from SQLite DB
+                ArrayList<HashMap<String, String>> userList = controller.searchUser(s);
+                // If users exists in SQLite DB
+                if (userList.size() != 0) {
+
+                    // Set the User Array list in ListView
+                    ListAdapter adapter = new SimpleAdapter(Order.this, userList, R.layout.order_item_list_content, new String[] {
+                            "Nama_Perusahaan","transaksiName" }, new int[] { R.id.nomor, R.id.no_transaksi });
+                    final ListView myList = (ListView) findViewById(android.R.id.list);
+                    myList.setAdapter(adapter);
+
+
+                    //kode membaca transaksi
+                    myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view,int position, long id){
+                            HashMap<String,String> map =(HashMap<String,String>)myList.getItemAtPosition(position);
+                            String isiBaris = map.get("transaksiName");
+                            Config.kode = isiBaris;
+                            load_data();
+                        }
+                    });
+
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Data tidak ada!", Toast.LENGTH_LONG).show();
+                }
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                android.util.Log.d(TAG, "onQueryTextChange ");
+                return false;
+            }
+
+        });
+
         return true;
     }
 
