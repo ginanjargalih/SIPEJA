@@ -3,18 +3,17 @@ package com.example.android.sipeja.order;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.SearchView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -58,6 +57,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 import com.example.android.sipeja.JSONParser;
+
+import android.database.Cursor;
 
 public class Order extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -132,8 +133,8 @@ public class Order extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //untuk menu default yg dipilih
-        navigationView.setCheckedItem(R.id.nav_order);
-        navigationView.getMenu().performIdentifierAction(R.id.nav_order, 0);
+        //navigationView.setCheckedItem(R.id.nav_order);
+        //navigationView.getMenu().performIdentifierAction(R.id.nav_order, 0);
 
         //pada drawer
         View hView =  navigationView.getHeaderView(0);
@@ -212,20 +213,6 @@ public class Order extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -425,9 +412,9 @@ public class Order extends AppCompatActivity
         Config.hitung2 = 1;
     }
 
+    //hapus db untuk diganti datanya
     private void dropTable() {
         this.deleteDatabase("transaksi.db");
-
         syncSQLiteMySQLDB();
     }
 
@@ -526,9 +513,6 @@ public class Order extends AppCompatActivity
                     editor.putString(Config.kota,result.getString("kotaPelanggan"));
                     editor.putString(Config.provinsi,result.getString("propinsiPelanggan"));
 
-
-
-
                     //Saving values to editor
                     editor.commit();
 
@@ -556,4 +540,6 @@ public class Order extends AppCompatActivity
         intent.putExtra(Profile.EXTRA_MESSAGE5, "Detail Profil");
         startActivityForResult(intent, ACT2_REQUEST);
     }
+
+    //untuk search
 }

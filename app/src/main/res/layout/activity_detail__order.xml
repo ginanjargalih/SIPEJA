@@ -927,40 +927,9 @@
 
 
 
-                <!--*********Est. delivery**********-->
+                <!--*********Detail Sample**********-->
 
-                <LinearLayout
-
-                    android:layout_marginTop="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginRight="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
-
-                    <TextView
-                        android:layout_weight="1"
-                        android:id="@+id/estdelivery1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Detail Sampel dan Parameter"
-                        android:textColor="@color/colorSub"
-                        android:drawableRight="@drawable/arrow2"
-                        />
-
-
-
-                </LinearLayout>
-
-                <View
-                    android:layout_marginTop="16dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colordevider"
-                    android:padding="16dp"
-                    />
-
+                <!--*********Detail Sample**********-->
 
 
                 <LinearLayout
