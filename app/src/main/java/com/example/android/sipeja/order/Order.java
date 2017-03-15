@@ -11,7 +11,9 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
 import android.text.TextUtils;
@@ -62,7 +64,7 @@ import com.example.android.sipeja.JSONParser;
 import android.database.Cursor;
 
 public class Order extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, SwipeRefreshLayout.OnRefreshListener{
 
     public static final String EXTRA_MESSAGE2 = "Order" ;
     static final int ACT2_REQUEST = 99;  // request code
@@ -82,6 +84,8 @@ public class Order extends AppCompatActivity
     JSONParser jsonParser = new JSONParser();
 
     private final static String TAG= Order.class.getName().toString();
+
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,6 +200,11 @@ public class Order extends AppCompatActivity
         title.setText("Terdapat " + Config.index +" transaksi");
         //title.setText("DB Veri saat ini : " + Config.db_version);
 
+
+        //untuk swipe
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.content_order);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
     }
 
     @Override
@@ -460,6 +469,9 @@ public class Order extends AppCompatActivity
         startActivity(objIntent);
 
         Config.hitung2 = 1;
+
+        mSwipeRefreshLayout.setRefreshing(false);
+
     }
 
     //hapus db untuk diganti datanya
@@ -492,6 +504,18 @@ public class Order extends AppCompatActivity
                 ringProgressDialog.dismiss();
             }
         }).start();
+    }
+
+    //untuk swipe
+    @Override
+    public void onRefresh() {
+        new Handler().postDelayed(new Runnable() {
+            @Override public void run() {
+                mSwipeRefreshLayout.setRefreshing(false);
+                reloadActivity();
+            }
+        }, 5000);
+        //mSwipeRefreshLayout.setRefreshing(true);
     }
 
     private class AttemptLogin extends AsyncTask<String, String, JSONObject> {
