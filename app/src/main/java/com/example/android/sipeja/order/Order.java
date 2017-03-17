@@ -16,7 +16,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.SearchView;
-import android.text.TextUtils;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -61,7 +60,6 @@ import java.util.HashMap;
 
 import com.example.android.sipeja.JSONParser;
 
-import android.database.Cursor;
 
 public class Order extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, SwipeRefreshLayout.OnRefreshListener{
@@ -158,30 +156,9 @@ public class Order extends AppCompatActivity
         ImageView image = (ImageView)hView3.findViewById(R.id.imageView);
         image.setImageDrawable(drawable);
 
-        // Get User records from SQLite DB
-        ArrayList<HashMap<String, String>> userList = controller.getAllUsers();
-        // If users exists in SQLite DB
-        if (userList.size() != 0) {
+        // Get data records from SQLite DB
+        ambil_data_sqlite();
 
-            // Set the User Array list in ListView
-            ListAdapter adapter = new SimpleAdapter(Order.this, userList, R.layout.order_item_list_content, new String[] {
-                    "Nama_Perusahaan","transaksiName" }, new int[] { R.id.nomor, R.id.no_transaksi });
-            final ListView myList = (ListView) findViewById(android.R.id.list);
-            myList.setAdapter(adapter);
-
-
-            //kode membaca transaksi
-            myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view,int position, long id){
-                    HashMap<String,String> map =(HashMap<String,String>)myList.getItemAtPosition(position);
-                    String isiBaris = map.get("transaksiName");
-                    Config.kode = isiBaris;
-                    load_data();
-                }
-            });
-
-        }
         // Initialize Progress Dialog properties
         prgDialog = new ProgressDialog(this);
         prgDialog.setMessage("Mengambil Data dari Server. Mohon Tunggu...");
@@ -214,6 +191,32 @@ public class Order extends AppCompatActivity
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+        }
+    }
+
+    public void ambil_data_sqlite(){
+        ArrayList<HashMap<String, String>> userList = controller.getAllUsers();
+        // If users exists in SQLite DB
+        if (userList.size() != 0) {
+
+            // Set the User Array list in ListView
+            ListAdapter adapter = new SimpleAdapter(Order.this, userList, R.layout.order_item_list_content, new String[] {
+                    "Nama_Perusahaan","transaksiName" }, new int[] { R.id.nomor, R.id.no_transaksi });
+            final ListView myList = (ListView) findViewById(android.R.id.list);
+            myList.setAdapter(adapter);
+
+
+            //kode membaca transaksi
+            myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view,int position, long id){
+                    HashMap<String,String> map =(HashMap<String,String>)myList.getItemAtPosition(position);
+                    String isiBaris = map.get("transaksiName");
+                    Config.kode = isiBaris;
+                    load_data();
+                }
+            });
+
         }
     }
 
@@ -469,9 +472,6 @@ public class Order extends AppCompatActivity
         startActivity(objIntent);
 
         Config.hitung2 = 1;
-
-        mSwipeRefreshLayout.setRefreshing(false);
-
     }
 
     //hapus db untuk diganti datanya
@@ -512,10 +512,9 @@ public class Order extends AppCompatActivity
         new Handler().postDelayed(new Runnable() {
             @Override public void run() {
                 mSwipeRefreshLayout.setRefreshing(false);
-                reloadActivity();
+                ambil_data_sqlite();
             }
-        }, 5000);
-        //mSwipeRefreshLayout.setRefreshing(true);
+        }, 3000);
     }
 
     private class AttemptLogin extends AsyncTask<String, String, JSONObject> {
@@ -614,6 +613,5 @@ public class Order extends AppCompatActivity
         intent.putExtra(Profile.EXTRA_MESSAGE5, "Detail Profil");
         startActivityForResult(intent, ACT2_REQUEST);
     }
-
-    //untuk search
+    
 }
