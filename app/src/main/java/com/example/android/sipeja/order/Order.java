@@ -613,5 +613,5 @@ public class Order extends AppCompatActivity
         intent.putExtra(Profile.EXTRA_MESSAGE5, "Detail Profil");
         startActivityForResult(intent, ACT2_REQUEST);
     }
-    
+
 }
