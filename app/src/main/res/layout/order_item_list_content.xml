@@ -6,7 +6,7 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="88dp"
+        android:layout_width="43dp"
         android:layout_height="75dp"
         android:layout_gravity="center"
         android:padding="5dp"
