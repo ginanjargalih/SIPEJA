@@ -83,7 +83,8 @@ public class DBController  extends SQLiteOpenHelper {
 
 		ArrayList<HashMap<String, String>> usersList;
 		usersList = new ArrayList<HashMap<String, String>>();
-		String selectQuery = "SELECT  * FROM transaksi WHERE Nama_Perusahaan " + "  LIKE  '%" + search + "%' ";
+		String selectQuery = "SELECT  * FROM transaksi WHERE Nama_Perusahaan " + "  LIKE  '%" + search + "%'"
+				+"OR transaksiName" + "  LIKE  '%" + search + "%'";
 		SQLiteDatabase database = this.getWritableDatabase();
 		Cursor cursor = database.rawQuery(selectQuery, null);
 		if (cursor.moveToFirst()) {
