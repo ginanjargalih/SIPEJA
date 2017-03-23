@@ -380,7 +380,8 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
             RATING[8]="Belum dilakukan";
             RATING[9]="Belum dilakukan";
 
-            ((Button)findViewById(R.id.buy)).setText("Setujui Pembayaran");
+            Button playButton = (Button) findViewById(R.id.buy);
+            playButton.setVisibility(View.GONE);
         }
 
         else if (hitung == 2){
@@ -418,7 +419,8 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
             RATING[8]="Belum dilakukan";
             RATING[9]="Belum dilakukan";
 
-            ((Button)findViewById(R.id.buy)).setText("Cetak Kaji Ulang");
+            Button playButton = (Button) findViewById(R.id.buy);
+            playButton.setVisibility(View.GONE);
         }
 
         else if (hitung == 3){
@@ -456,7 +458,8 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
             RATING[8]="Belum dilakukan";
             RATING[9]="Belum dilakukan";
 
-            ((Button)findViewById(R.id.buy)).setText("Cetak Barcode");
+            Button playButton = (Button) findViewById(R.id.buy);
+            playButton.setVisibility(View.GONE);
         }
 
         else if (hitung == 4){
@@ -570,7 +573,9 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
             RATING[8]="Belum dilakukan";
             RATING[9]="Belum dilakukan";
 
-            ((Button)findViewById(R.id.buy)).setText("Pengujian dan Kalibrasi Selesai");
+            Button playButton = (Button) findViewById(R.id.buy);
+            playButton.setVisibility(View.GONE);
+
         }
 
         else if (hitung == 7){
@@ -608,7 +613,8 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
             RATING[8]="Belum dilakukan";
             RATING[9]="Belum dilakukan";
 
-            ((Button)findViewById(R.id.buy)).setText("Penyusunan Laporan");
+            Button playButton = (Button) findViewById(R.id.buy);
+            playButton.setVisibility(View.GONE);
         }
 
         else if (hitung == 8){
@@ -646,7 +652,8 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
             RATING[8]="Belum dilakukan";
             RATING[9]="Belum dilakukan";
 
-            ((Button)findViewById(R.id.buy)).setText("Periksa Laporan");
+            Button playButton = (Button) findViewById(R.id.buy);
+            playButton.setVisibility(View.GONE);
         }
 
         else if (hitung == 9){
@@ -684,7 +691,8 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
             RATING[8]="Sudah dilakukan";
             RATING[9]="Belum dilakukan";
 
-            ((Button)findViewById(R.id.buy)).setText("Verifikasi Laporan");
+            Button playButton = (Button) findViewById(R.id.buy);
+            playButton.setVisibility(View.GONE);
         }
 
         else if (hitung == 10){
