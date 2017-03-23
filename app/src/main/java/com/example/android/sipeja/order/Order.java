@@ -192,6 +192,7 @@ public class Order extends AppCompatActivity
         mSwipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
     }
 
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -257,39 +258,60 @@ public class Order extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+        //hak akses
+        //Creating a shared preference
+        SharedPreferences sharedPreferences = Order.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
+        // Get data records from SQLite DB
+        //baca data hak akses utama
+
+        String user = sharedPreferences.getString(Config.Name,"");
+        String user2 = sharedPreferences.getString(Config.akses,"");
+
         getMenuInflater().inflate(R.menu.order, menu);
+        MenuItem register = menu.findItem(R.id.search);
+
+        if(user2.equals("pegawai")){
+            register.setVisible(true);
+        }
+        else  if(user2.equals("pelanggan")){
+            register.setVisible(false);
+        }
+
         SearchManager manager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView search = (SearchView) menu.findItem(R.id.search).getActionView();
         search.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
+
 
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
             public boolean onQueryTextSubmit(String s) {
                 android.util.Log.d(TAG, "onQueryTextSubmit ");
+
+                ArrayList<HashMap<String, String>> userList = new ArrayList<HashMap<String,String>>();
                 // Get User records from SQLite DB
-                ArrayList<HashMap<String, String>> userList = controller.searchUser(s);
+                userList = controller.searchUser(s);
+
                 // If users exists in SQLite DB
                 if (userList.size() != 0) {
 
                     // Set the User Array list in ListView
-                    ListAdapter adapter = new SimpleAdapter(Order.this, userList, R.layout.order_item_list_content, new String[] {
-                            "Nama_Perusahaan","transaksiName" }, new int[] { R.id.nomor, R.id.no_transaksi });
+                    ListAdapter adapter = new SimpleAdapter(Order.this, userList, R.layout.order_item_list_content, new String[]{
+                            "Nama_Perusahaan", "transaksiName"}, new int[]{R.id.nomor, R.id.no_transaksi});
                     final ListView myList = (ListView) findViewById(android.R.id.list);
                     myList.setAdapter(adapter);
 
 
                     //kode membaca transaksi
                     myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                        @Override
-                        public void onItemClick(AdapterView<?> parent, View view,int position, long id){
-                            HashMap<String,String> map =(HashMap<String,String>)myList.getItemAtPosition(position);
-                            String isiBaris = map.get("transaksiName");
-                            Config.kode = isiBaris;
-                            load_data();
-                        }
-                    });
-
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    HashMap<String, String> map = (HashMap<String, String>) myList.getItemAtPosition(position);
+                                    String isiBaris = map.get("transaksiName");
+                                    Config.kode = isiBaris;
+                                    load_data();
+                                }
+                            });
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Data tidak ada!", Toast.LENGTH_LONG).show();
@@ -339,12 +361,14 @@ public class Order extends AppCompatActivity
         }
         else if (user.equals("pelanggan")){
             if (id == R.id.nav_dashboard) {
+                item.setVisible(false); //true or false
                 Toast.makeText(getApplicationContext(),	"Anda Tidak Memiliki Hak Akses", Toast.LENGTH_LONG).show();
             } else if (id == R.id.nav_order) {
                 //halaman ini
             } else if (id == R.id.nav_notifikasi) {
 
             } else if (id == R.id.nav_log) {
+                item.setVisible(false); //true or false
                 Toast.makeText(getApplicationContext(),	"Anda Tidak Memiliki Hak Akses", Toast.LENGTH_LONG).show();
             } else if (id == R.id.nav_profile) {
                 klikProfile();
@@ -569,7 +593,19 @@ public class Order extends AppCompatActivity
         new Handler().postDelayed(new Runnable() {
             @Override public void run() {
                 mSwipeRefreshLayout.setRefreshing(false);
-                ambil_data_sqlite();
+                //Creating a shared preference
+                SharedPreferences sharedPreferences = Order.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
+                // Get data records from SQLite DB
+                //baca data hak akses utama
+                String user = sharedPreferences.getString(Config.Name,"");
+                String user2 = sharedPreferences.getString(Config.akses,"");
+
+                if(user2.equals("pegawai")) {
+                    ambil_data_sqlite();
+                }
+                else if(user2.equals("pelanggan")){
+                    ambil_data_sqlite_pelanggan(user);
+                }
             }
         }, 3000);
     }
