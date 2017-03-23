@@ -37,6 +37,7 @@ import android.widget.Toast;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.example.android.sipeja.Login;
+import com.example.android.sipeja.Menu_awal;
 import com.example.android.sipeja.Menu_utama;
 import com.example.android.sipeja.R;
 import com.example.android.sipeja.config.Config;
@@ -157,7 +158,15 @@ public class Order extends AppCompatActivity
         image.setImageDrawable(drawable);
 
         // Get data records from SQLite DB
-        ambil_data_sqlite();
+        //baca data hak akses utama
+        String user2 = sharedPreferences.getString(Config.akses,"");
+
+        if(user2.equals("pegawai")) {
+            ambil_data_sqlite();
+        }
+        else if(user2.equals("pelanggan")){
+            ambil_data_sqlite_pelanggan(user);
+        }
 
         // Initialize Progress Dialog properties
         prgDialog = new ProgressDialog(this);
@@ -175,7 +184,6 @@ public class Order extends AppCompatActivity
 
         title = (TextView) findViewById(R.id.title);
         title.setText("Terdapat " + Config.index +" transaksi");
-        //title.setText("DB Veri saat ini : " + Config.db_version);
 
 
         //untuk swipe
@@ -196,6 +204,32 @@ public class Order extends AppCompatActivity
 
     public void ambil_data_sqlite(){
         ArrayList<HashMap<String, String>> userList = controller.getAllUsers();
+        // If users exists in SQLite DB
+        if (userList.size() != 0) {
+
+            // Set the User Array list in ListView
+            ListAdapter adapter = new SimpleAdapter(Order.this, userList, R.layout.order_item_list_content, new String[] {
+                    "Nama_Perusahaan","transaksiName" }, new int[] { R.id.nomor, R.id.no_transaksi });
+            final ListView myList = (ListView) findViewById(android.R.id.list);
+            myList.setAdapter(adapter);
+
+
+            //kode membaca transaksi
+            myList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view,int position, long id){
+                    HashMap<String,String> map =(HashMap<String,String>)myList.getItemAtPosition(position);
+                    String isiBaris = map.get("transaksiName");
+                    Config.kode = isiBaris;
+                    load_data();
+                }
+            });
+
+        }
+    }
+
+    public void ambil_data_sqlite_pelanggan(String s){
+        ArrayList<HashMap<String, String>> userList = controller.searchUser(s);
         // If users exists in SQLite DB
         if (userList.size() != 0) {
 
@@ -282,18 +316,41 @@ public class Order extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_dashboard) {
-            klikDashboard();
-        } else if (id == R.id.nav_order) {
-            //halaman ini
-        } else if (id == R.id.nav_notifikasi) {
+        //Creating a shared preference
+        SharedPreferences sharedPreferences = Order.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
 
-        } else if (id == R.id.nav_log) {
-            klikLogActivity();
-        }else if (id == R.id.nav_profile) {
-            klikProfile();
-        } else if (id == R.id.nav_keluar) {
-            klikKeluar();
+        //baca data
+        String user = sharedPreferences.getString(Config.akses,"");
+        if(user.equals("pegawai")) {
+
+            if (id == R.id.nav_dashboard) {
+                klikDashboard();
+            } else if (id == R.id.nav_order) {
+                //halaman ini
+            } else if (id == R.id.nav_notifikasi) {
+
+            } else if (id == R.id.nav_log) {
+                klikLogActivity();
+            } else if (id == R.id.nav_profile) {
+                klikProfile();
+            } else if (id == R.id.nav_keluar) {
+                klikKeluar();
+            }
+        }
+        else if (user.equals("pelanggan")){
+            if (id == R.id.nav_dashboard) {
+                Toast.makeText(getApplicationContext(),	"Anda Tidak Memiliki Hak Akses", Toast.LENGTH_LONG).show();
+            } else if (id == R.id.nav_order) {
+                //halaman ini
+            } else if (id == R.id.nav_notifikasi) {
+
+            } else if (id == R.id.nav_log) {
+                Toast.makeText(getApplicationContext(),	"Anda Tidak Memiliki Hak Akses", Toast.LENGTH_LONG).show();
+            } else if (id == R.id.nav_profile) {
+                klikProfile();
+            } else if (id == R.id.nav_keluar) {
+                klikKeluar();
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -343,7 +400,7 @@ public class Order extends AppCompatActivity
                         sharedPreferences.edit().clear().commit();
 
                         //Starting login activity
-                        Intent intent = new Intent(Order.this, Login.class);
+                        Intent intent = new Intent(Order.this, Menu_awal.class);
                         startActivity(intent);
 
                         finish();

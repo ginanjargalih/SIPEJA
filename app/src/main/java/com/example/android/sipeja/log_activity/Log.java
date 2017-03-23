@@ -31,6 +31,7 @@ import android.widget.Toast;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.example.android.sipeja.Login;
+import com.example.android.sipeja.Menu_awal;
 import com.example.android.sipeja.Menu_utama;
 import com.example.android.sipeja.R;
 import com.example.android.sipeja.config.Config;
@@ -381,7 +382,7 @@ public class Log extends AppCompatActivity
                         sharedPreferences.edit().clear().commit();
 
                         //Starting login activity
-                        Intent intent = new Intent(Log.this, Login.class);
+                        Intent intent = new Intent(Log.this, Menu_awal.class);
                         startActivity(intent);
 
                         finish();

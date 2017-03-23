@@ -130,6 +130,7 @@
                 android:background="#232323"
                 android:padding="10dp"
                 android:gravity="center"
+                android:onClick="klik_pelanggan"
                 />
 
         </LinearLayout>

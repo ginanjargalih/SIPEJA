@@ -238,7 +238,7 @@ public class Menu_utama extends AppCompatActivity
                         sharedPreferences.edit().clear().commit();
 
                         //Starting login activity
-                        Intent intent = new Intent(Menu_utama.this, Login.class);
+                        Intent intent = new Intent(Menu_utama.this, Menu_awal.class);
                         startActivity(intent);
 
                         finish();

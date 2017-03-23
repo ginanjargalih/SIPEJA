@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.sipeja.config.Config;
+import com.example.android.sipeja.order.Order;
 
 public class Menu_awal extends AppCompatActivity {
 
@@ -46,8 +47,29 @@ public class Menu_awal extends AppCompatActivity {
 
 
     public void klik_pegawai(View view) {
-        Config.akses = 1;
+        //Creating editor to store values to shared preferences
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+
+        //Adding values to editor
+        editor.putString(Config.akses,"pegawai");
+        //Saving values to editor
+        editor.commit();
+
         Intent it = new Intent(Menu_awal.this,Login.class);
+        startActivity(it);
+
+    }
+
+    public void klik_pelanggan(View view) {
+        //Creating editor to store values to shared preferences
+        SharedPreferences.Editor editor = sharedpreferences.edit();
+
+        //Adding values to editor
+        editor.putString(Config.akses,"pelanggan");
+        //Saving values to editor
+        editor.commit();
+
+        Intent it = new Intent(Menu_awal.this,Login_pelanggan.class);
         startActivity(it);
 
     }
@@ -70,8 +92,19 @@ public class Menu_awal extends AppCompatActivity {
                 }
             }).start();
 
-            Intent it = new Intent(Menu_awal.this,Menu_utama.class);
-            startActivity(it);
+
+            //baca data
+            String user = sharedpreferences.getString(Config.akses,"");
+
+            if(user.equals("pegawai")) {
+
+                Intent it = new Intent(Menu_awal.this, Menu_utama.class);
+                startActivity(it);
+            }
+            else if(user.equals("pelanggan")){
+                Intent it = new Intent(Menu_awal.this, Order.class);
+                startActivity(it);
+            }
         }
     }
 

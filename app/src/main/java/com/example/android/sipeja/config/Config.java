@@ -32,7 +32,7 @@ public class Config {
     public  static Integer index = 0;
 
     //untuk menandai pelanggan atau pegawai
-    public static  Integer akses = 0;
+    public static  final String akses = "0";
 
 
     //untuk detail transaksi
