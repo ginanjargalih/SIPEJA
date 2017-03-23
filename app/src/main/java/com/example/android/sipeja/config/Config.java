@@ -31,6 +31,9 @@ public class Config {
     //untuk menghitung jumlah transaksi
     public  static Integer index = 0;
 
+    //untuk menandai pelanggan atau pegawai
+    public static  Integer akses = 0;
+
 
     //untuk detail transaksi
     public static String kode = "Kode_transaksi";

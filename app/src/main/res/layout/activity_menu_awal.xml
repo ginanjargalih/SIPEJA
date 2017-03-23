@@ -108,19 +108,31 @@
                 android:textSize="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Berikutnya"
+                android:text="pegawai"
+                android:textAllCaps="true"
                 android:textColor="#fff"
                 android:background="#2b73e1"
                 android:padding="10dp"
                 android:gravity="center"
-                android:onClick="klik"
+                android:onClick="klik_pegawai"
                 />
 
+            <Button
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:id="@+id/signin2"
+                android:textSize="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="pelanggan"
+                android:textAllCaps="true"
+                android:textColor="#fff"
+                android:background="#232323"
+                android:padding="10dp"
+                android:gravity="center"
+                />
 
         </LinearLayout>
-
-
-
-
     </LinearLayout>
+
 </RelativeLayout>

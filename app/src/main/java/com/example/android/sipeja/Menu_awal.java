@@ -38,20 +38,23 @@ public class Menu_awal extends AppCompatActivity {
 
         //Creating a shared preference
         sharedpreferences = Menu_awal.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
+        cek_login();
 
 
     }
 
 
 
-    public void klik(View view) {
+    public void klik_pegawai(View view) {
+        Config.akses = 1;
+        Intent it = new Intent(Menu_awal.this,Login.class);
+        startActivity(it);
 
+    }
+
+    public void cek_login(){
         String value = sharedpreferences.getString("nameKey",null);
-        if (value == null) {
-            Intent it = new Intent(Menu_awal.this,Login.class);
-            startActivity(it);
-        }
-        else {
+        if (value != null) {
             final ProgressDialog ringProgressDialog = ProgressDialog.show(Menu_awal.this, null,	"Masuk ke Aplikasi", true);
             ringProgressDialog.setCancelable(true);
             new Thread(new Runnable() {
@@ -70,8 +73,6 @@ public class Menu_awal extends AppCompatActivity {
             Intent it = new Intent(Menu_awal.this,Menu_utama.class);
             startActivity(it);
         }
-
-
     }
 
 }
