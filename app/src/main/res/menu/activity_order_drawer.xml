@@ -11,10 +11,6 @@
             android:icon="@drawable/order"
             android:title="Order" />
         <item
-            android:id="@+id/nav_notifikasi"
-            android:icon="@drawable/notifikasi"
-            android:title="Notifikasi" />
-        <item
             android:id="@+id/nav_log"
             android:icon="@drawable/log"
             android:title="Log Aktivitas" />

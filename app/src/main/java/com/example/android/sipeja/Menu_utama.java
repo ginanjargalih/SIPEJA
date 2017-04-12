@@ -181,9 +181,7 @@ public class Menu_utama extends AppCompatActivity
             //halaman ini
         } else if (id == R.id.nav_order) {
             klikOrder();
-        } else if (id == R.id.nav_notifikasi) {
-
-        } else if (id == R.id.nav_log) {
+        }  else if (id == R.id.nav_log) {
             klikLogActivity();
 
         }else if (id == R.id.nav_profile) {

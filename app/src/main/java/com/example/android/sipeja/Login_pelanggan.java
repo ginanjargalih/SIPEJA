@@ -54,12 +54,21 @@ public class Login_pelanggan extends AppCompatActivity {
 
     public void login(View view) {
         editName=(EditText)findViewById(R.id.editName);
+        editPassword=(EditText)findViewById(R.id.editPassword);
 
         //untuk username
         inputNama = editName.getText().toString();
 
+        //untuk password
+        inputPassword = editPassword.getText().toString();
+
         if(TextUtils.isEmpty(inputNama)) {
-            editName.setError("Isi Username!");
+            editName.setError("Isi E-mail!");
+            return;
+        }
+
+        else if(TextUtils.isEmpty(inputPassword)) {
+            editPassword.setError("Isi Password!");
             return;
         }
 
@@ -71,7 +80,7 @@ public class Login_pelanggan extends AppCompatActivity {
                 try {
                     Thread.sleep(3000);
                     Login_pelanggan.AttemptLogin attemptLogin= new Login_pelanggan.AttemptLogin();
-                    attemptLogin.execute(editName.getText().toString(),"");
+                    attemptLogin.execute(editName.getText().toString(),editPassword.getText().toString(),"");
 
 
                 } catch (Exception e) {
@@ -97,11 +106,12 @@ public class Login_pelanggan extends AppCompatActivity {
 
         protected JSONObject doInBackground(String... args) {
 
-
+            String password = args[1];
             String name= args[0];
 
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("username", name));
+            params.add(new BasicNameValuePair("password", password));
 
             JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
 

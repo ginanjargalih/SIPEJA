@@ -170,8 +170,6 @@ public class Log extends AppCompatActivity
             klikDashboard();
         } else if (id == R.id.nav_order) {
             klikOrder();
-        } else if (id == R.id.nav_notifikasi) {
-
         } else if (id == R.id.nav_log) {
             //halaman ini
         }else if (id == R.id.nav_profile) {

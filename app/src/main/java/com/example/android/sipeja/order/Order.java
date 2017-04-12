@@ -349,8 +349,6 @@ public class Order extends AppCompatActivity
                 klikDashboard();
             } else if (id == R.id.nav_order) {
                 //halaman ini
-            } else if (id == R.id.nav_notifikasi) {
-
             } else if (id == R.id.nav_log) {
                 klikLogActivity();
             } else if (id == R.id.nav_profile) {
@@ -365,8 +363,6 @@ public class Order extends AppCompatActivity
                 Toast.makeText(getApplicationContext(),	"Anda Tidak Memiliki Hak Akses", Toast.LENGTH_LONG).show();
             } else if (id == R.id.nav_order) {
                 //halaman ini
-            } else if (id == R.id.nav_notifikasi) {
-
             } else if (id == R.id.nav_log) {
                 item.setVisible(false); //true or false
                 Toast.makeText(getApplicationContext(),	"Anda Tidak Memiliki Hak Akses", Toast.LENGTH_LONG).show();
