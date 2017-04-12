@@ -294,51 +294,6 @@
             android:background="#dad8d8" />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-
-            <TextView
-                android:layout_weight="1"
-                android:id="@+id/facebook"
-                android:textSize="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Notifikasi"
-                android:textColor="#a2a1b8"
-                android:maxLength="12"
-                android:background="#0000"
-                android:padding="16dp"
-                android:gravity="left"
-                />
-
-            <Switch
-                android:layout_weight="1"
-                android:id="@+id/switch1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:gravity="left"
-                />
-
-            <!--<ToggleButton-->
-            <!--android:id="@+id/ToggleButton1"-->
-            <!--android:layout_width="120dp"-->
-            <!--android:layout_height="32dp"-->
-            <!--android:paddingLeft="20dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="@drawable/toogle_switch"-->
-
-            <!--/>-->
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#dad8d8"/>
-
     </LinearLayout>
 
         </LinearLayout>
