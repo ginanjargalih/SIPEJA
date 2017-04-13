@@ -347,12 +347,10 @@ public class Order extends AppCompatActivity
         if(user.equals("pegawai")) {
 
             if (id == R.id.nav_dashboard) {
-                item.setVisible(true); //true or false
                 klikDashboard();
             } else if (id == R.id.nav_order) {
                 //halaman ini
             } else if (id == R.id.nav_log) {
-                item.setVisible(true); //true or false
                 klikLogActivity();
             } else if (id == R.id.nav_profile) {
                 klikProfile();
@@ -363,9 +361,15 @@ public class Order extends AppCompatActivity
         else if (user.equals("pelanggan")){
 
 
-            if (id == R.id.nav_order) {
+            if (id == R.id.nav_dashboard) {
+                item.setVisible(false); //true or false
+                Toast.makeText(getApplicationContext(), "Anda Tidak memiliki Hak Akses", Toast.LENGTH_LONG).show();
+            } else if (id == R.id.nav_order) {
                 //halaman ini
-            }else if (id == R.id.nav_profile) {
+            } else if (id == R.id.nav_log) {
+                item.setVisible(false); //true or false
+                Toast.makeText(getApplicationContext(), "Anda Tidak memiliki Hak Akses", Toast.LENGTH_LONG).show();
+            } else if (id == R.id.nav_profile) {
                 klikProfile();
             } else if (id == R.id.nav_keluar) {
                 klikKeluar();

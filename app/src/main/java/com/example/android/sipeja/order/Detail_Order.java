@@ -345,6 +345,12 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
     //untuk status transaksi
     public void status_transaksi(int hitung){
 
+        //Creating a shared preference
+        SharedPreferences sharedPreferences = Detail_Order.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
+
+        //baca data
+        String user = sharedPreferences.getString(Config.akses,"");
+
         if (hitung == 1){
 
             IMAGE[0] = R.drawable.status1;
@@ -497,7 +503,23 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
             RATING[8]="Belum dilakukan";
             RATING[9]="Belum dilakukan";
 
-            ((Button)findViewById(R.id.buy)).setText("Verifikasi Order");
+            if (user.equals("pelanggan")){
+                Button playButton = (Button) findViewById(R.id.buy);
+                playButton.setVisibility(View.GONE);
+            }else {
+                //untuk setting button
+                final Button btn = (Button) findViewById(R.id.buy);
+                btn.setText("Verifikasi Order");
+                btn.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        //memanggil fungsi
+                        sms();
+                    }
+                });
+            }
         }
 
         else if (hitung == 5){
@@ -535,7 +557,23 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
             RATING[8]="Belum dilakukan";
             RATING[9]="Belum dilakukan";
 
-            ((Button)findViewById(R.id.buy)).setText("Administrasi Lab");
+            if (user.equals("pelanggan")){
+                Button playButton = (Button) findViewById(R.id.buy);
+                playButton.setVisibility(View.GONE);
+            }else {
+                //untuk setting button
+                final Button btn = (Button) findViewById(R.id.buy);
+                btn.setText("Administrasi Lab");
+                btn.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        //memanggil fungsi
+                        telepon();
+                    }
+                });
+            }
         }
 
         else if (hitung == 6){
@@ -739,7 +777,7 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
 
     //fungsi fungsi tombol
     // fungsi telepon
-    public void telepon(View view) {
+    public void telepon() {
 
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:" + number));
@@ -755,7 +793,7 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
     }
 
     //untuk sms
-    public  void sms(View view){
+    public  void sms(){
         /** Creating an intent to initiate view action */
         Intent intent = new Intent("android.intent.action.VIEW");
 
