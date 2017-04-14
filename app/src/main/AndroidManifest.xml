@@ -45,7 +45,9 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".order.Detail_Order" />
         <activity android:name=".order.Log_Transaksi" />
-        <activity android:name=".Login_pelanggan"></activity>
+        <activity android:name=".Login_pelanggan" />
+        <activity android:name=".order.Verifikasi_order" />
+        <activity android:name=".order.Administrasi_Lab"></activity>
     </application>
 
 </manifest>

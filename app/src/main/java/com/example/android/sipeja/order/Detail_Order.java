@@ -516,7 +516,7 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
                     public void onClick(View v)
                     {
                         //memanggil fungsi
-                        sms();
+                        klik_verifikasi_order();
                     }
                 });
             }
@@ -570,7 +570,7 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
                     public void onClick(View v)
                     {
                         //memanggil fungsi
-                        telepon();
+                        klik_admin_lab();
                     }
                 });
             }
@@ -908,4 +908,21 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
         intent.putExtra(Log_Transaksi.EXTRA_MESSAGE6, "Log Transaksi");
         startActivityForResult(intent, ACT2_REQUEST);
     }
+
+    //untuk menampilkan verifikasi order
+    public void klik_verifikasi_order() {
+        Intent intent = new Intent(this, Verifikasi_order.class);
+        //cara 2
+        intent.putExtra(Verifikasi_order.EXTRA_MESSAGE7, "Verifikasi Order");
+        startActivityForResult(intent, ACT2_REQUEST);
+    }
+
+    //untuk menampilkan admin lab
+    public void klik_admin_lab() {
+        Intent intent = new Intent(this, Administrasi_Lab.class);
+        //cara 2
+        intent.putExtra(Administrasi_Lab.EXTRA_MESSAGE8, "Admin Order");
+        startActivityForResult(intent, ACT2_REQUEST);
+    }
+
 }
