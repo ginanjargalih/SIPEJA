@@ -265,9 +265,6 @@ public class Verifikasi_order extends AppCompatActivity {
 
         //parsing json
         loading.dismiss();
-        /*adapter = new ArrayAdapter<String>(this, R.layout.listview,items);loading.dismiss();
-        listLog.setAdapter(adapter);
-        listLog.setClickable(true);*/
 
     }
 
