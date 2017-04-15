@@ -189,7 +189,9 @@ public class Memilih_Lab extends AppCompatActivity {
                 String d = Data.getString(Config.Parameter_metode);
 
                 // your code
-                items.add(a + "-" + b );
+                items.add("Nama Parameter : "+a+  System.getProperty("line.separator") +
+                        "Jumlah : " + b + System.getProperty("line.separator")+ "Harga : " + c + System.getProperty("line.separator")+
+                        "Metode : "+d);
                 hitungLog = hitungLog + 1;
 
 
