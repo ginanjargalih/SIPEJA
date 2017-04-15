@@ -94,4 +94,13 @@ public class Config {
     public static final String KEY_TEPAT = "waktuTepat";
     public static final String KEY_TELAT = "waktuTelat";
 
+    //untuk sampel
+    public static final String Sampel_id = "id";
+    public static final String Sampel_nama = "nama";
+
+    //detail sampel
+    public static final String Sampel_jumlah = "jumlahSampel";
+    public static final String Sampel_sertifikat = "jumlahSertifikat";
+    public static final String Sampel_keterangan = "keterangan";
+    public static final String Sampel_perkiraanSelesai = "perkiraanSelesai";
 }
