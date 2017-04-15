@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -27,10 +28,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.android.sipeja.JSONParser;
 import com.example.android.sipeja.Menu_awal;
 import com.example.android.sipeja.R;
 import com.example.android.sipeja.config.Config;
+import com.example.android.sipeja.profile.Profile;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,8 +48,11 @@ import java.util.Map;
 public class Verifikasi_order extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE7 = "diterima" ;
+    public static final String EXTRA_MESSAGE6 = "diterima" ;
     String idTransaksi;
     String kode_verifikasi_order;
+
+    static final int ACT2_REQUEST = 99;  // request code
 
     // deklarasi variabel
     private ProgressDialog loading;
@@ -63,6 +71,10 @@ public class Verifikasi_order extends AppCompatActivity {
 
     public static final String KEY_USERNAME = "id_transaksi";
     public static final String Verification = "kode_transaksi";
+
+    String URL = Config.URL + "detail_sampel/index.php";
+    JSONParser jsonParser = new JSONParser();
+    String kept;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -191,9 +203,8 @@ public class Verifikasi_order extends AppCompatActivity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
                 String isiBaris = (String) listLog.getItemAtPosition(position);
                 String pesan = isiBaris;
-                String kept = pesan.substring( 0, pesan.indexOf("-"));
-                Toast toast = Toast.makeText(getApplicationContext(), kept, Toast.LENGTH_SHORT);
-                toast.show();
+                kept = pesan.substring( 0, pesan.indexOf("-"));
+                load_data();
             }
         });
     }
@@ -266,6 +277,103 @@ public class Verifikasi_order extends AppCompatActivity {
         //parsing json
         loading.dismiss();
 
+    }
+
+    //untuk detail sampel
+    //untuk json
+    public void load_data() {
+
+
+        final ProgressDialog ringProgressDialog = ProgressDialog.show(Verifikasi_order.this, "", "Mengambil data", true);
+        ringProgressDialog.setCancelable(true);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(3000);
+                    Verifikasi_order.AttemptLogin attemptLogin = new Verifikasi_order.AttemptLogin();
+                    attemptLogin.execute(kept, "");
+
+
+                } catch (Exception e) {
+
+                }
+                ringProgressDialog.dismiss();
+            }
+        }).start();
+    }
+
+    private class AttemptLogin extends AsyncTask<String, String, JSONObject> {
+
+        @Override
+
+        protected void onPreExecute() {
+
+            super.onPreExecute();
+
+        }
+
+        @Override
+
+        protected JSONObject doInBackground(String... args) {
+
+            String id_sampel = args[0];
+
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("id_sampel", id_sampel));
+
+            JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
+
+
+            return json;
+
+        }
+
+        protected void onPostExecute(JSONObject result) {
+            try {
+                if (result != null) {
+                    Toast.makeText(getApplicationContext(), result.getString("message"), Toast.LENGTH_LONG).show();
+
+                    //sp
+                    //Creating a shared preference
+                    SharedPreferences sharedPreferences = Verifikasi_order.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
+
+                    //Creating editor to store values to shared preferences
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                    //Adding values to editor
+                    editor.putString(Config.Sampel_id, result.getString("Id"));
+                    editor.putString(Config.Sampel_jumlah, result.getString("JumlahSampel"));
+                    editor.putString(Config.Sampel_sertifikat, result.getString("JumlahSertifikat"));
+                    editor.putString(Config.Sampel_keterangan, result.getString("Keterangan"));
+                    editor.putString(Config.Sampel_perkiraanSelesai,result.getString("PerkiraanSelesai"));
+
+                    //Saving values to editor
+                    editor.commit();
+
+                    //buka detail
+                    klik_detail_sampel();
+
+
+
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Unable to retrieve any data from server", Toast.LENGTH_LONG).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
+    //untuk menampilkan detail sampel
+    public void klik_detail_sampel() {
+        Intent intent = new Intent(this, Memilih_Lab.class);
+        //cara 2
+        intent.putExtra(Memilih_Lab.EXTRA_MESSAGE8, "Detail Sampel");
+        startActivityForResult(intent, ACT2_REQUEST);
     }
 
     //tombol

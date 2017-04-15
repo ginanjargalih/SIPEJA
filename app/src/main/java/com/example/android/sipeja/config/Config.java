@@ -103,4 +103,10 @@ public class Config {
     public static final String Sampel_sertifikat = "jumlahSertifikat";
     public static final String Sampel_keterangan = "keterangan";
     public static final String Sampel_perkiraanSelesai = "perkiraanSelesai";
+
+    //untuk parameter
+    public static final String Parameter_nama = "Parameter";
+    public static final String Parameter_harga = "HargaSatuan";
+    public static final String Parameter_jumlah = "jumlah";
+    public static final String Parameter_metode = "Metode";
 }
