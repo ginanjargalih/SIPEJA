@@ -75,7 +75,6 @@ public class Config {
     public static final String Transaksi_WAKTU = "updated_at";
 
     //JSON for load status pembayaran
-    public static final String JSON_ARRAY = "result";
     public static final String KEY_LUNAS = "Lunas"; //total lunas
     public static final String KEY_BELUMLUNAS = "BelumLunas"; //total belum lunas
     public static final String KEY_LABS = "nama"; //nama laboratorium
@@ -109,4 +108,17 @@ public class Config {
     public static final String Parameter_harga = "HargaSatuan";
     public static final String Parameter_jumlah = "jumlah";
     public static final String Parameter_metode = "Metode";
+
+    //untuk lingkup
+    //JSON URL
+    public static final String DATA_URL = "http://sipeja.pe.hu/API_Lingkup/json.php";
+
+    //Tags used in the JSON String
+    public static final String Lingkup_ID= "id";
+    public static final String Lingkup_Nama = "nama";
+    public static final String Lingkup_Lab = "labId";
+    public static final String Kode_Lingkup = "kode_lingkup";
+
+    //JSON array name
+    public static final String JSON_ARRAY = "result";
 }

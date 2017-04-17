@@ -332,7 +332,7 @@ public class Verifikasi_order extends AppCompatActivity {
         protected void onPostExecute(JSONObject result) {
             try {
                 if (result != null) {
-                    Toast.makeText(getApplicationContext(), result.getString("message"), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), result.getString("message"), Toast.LENGTH_LONG).show();
 
                     //sp
                     //Creating a shared preference

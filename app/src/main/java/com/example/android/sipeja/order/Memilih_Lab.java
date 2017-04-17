@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,7 +37,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Memilih_Lab extends AppCompatActivity {
+public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSelectedListener {
 
     public static final String EXTRA_MESSAGE8 = "Memilih lab" ;
 
@@ -60,6 +61,21 @@ public class Memilih_Lab extends AppCompatActivity {
 
     String kode;
     String kode_verifikasi_order;
+
+    //untuk lingkup
+    //Declaring an Spinner
+    private Spinner spinner;
+
+    //An ArrayList for Spinner Items
+    private ArrayList<String> students;
+
+    //JSON Array
+    private JSONArray result;
+
+    //TextViews to display details
+    private TextView textViewName;
+    private TextView textViewCourse;
+    private TextView textViewSession;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +119,24 @@ public class Memilih_Lab extends AppCompatActivity {
 
         kode_verifikasi_order = "9cP6jF8KDGyfEPv7GBNAtA78Ha8GkzGEpSrXqWG6qye2JATby9AfEAz2yy9UMBcd";
         getData();
+
+        //untuk lingkup
+        //Initializing the ArrayList
+        students = new ArrayList<String>();
+
+        //Initializing Spinner
+        spinner = (Spinner) findViewById(R.id.spinner);
+
+        //Adding an Item Selected Listener to our Spinner
+        //As we have implemented the class Spinner.OnItemSelectedListener to this class iteself we are passing this to setOnItemSelectedListener
+        spinner.setOnItemSelectedListener(this);
+
+        //Initializing TextViews
+        textViewName = (TextView) findViewById(R.id.textViewName);
+        textViewCourse = (TextView) findViewById(R.id.textViewCourse);
+
+        //This method will fetch the data from the URL
+        getData_lingkup();
     }
 
     //content
@@ -228,5 +262,117 @@ public class Memilih_Lab extends AppCompatActivity {
         intent2.putExtra(Verifikasi_order.EXTRA_MESSAGE6,"");
         setResult(RESULT_OK, intent2);
         finish();
+    }
+
+    //untuk spinner
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)  {
+        //Setting the values to textviews for a selected item
+        textViewName.setText(getLab(position));
+        textViewCourse.setText(getNamaLingkup(position));
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+        textViewName.setText("");
+        textViewCourse.setText("");
+        textViewSession.setText("");
+    }
+
+    private void getData_lingkup(){
+        //Creating a string request
+        StringRequest stringRequest = new StringRequest(Config.DATA_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        JSONObject j = null;
+                        try {
+                            //Parsing the fetched Json String to JSON Object
+                            j = new JSONObject(response);
+
+                            //Storing the Array of JSON String to our JSON Array
+                            result = j.getJSONArray(Config.JSON_ARRAY);
+
+                            //Calling method getStudents to get the students from the JSON Array
+                            getStudents(result);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+
+        //Creating a request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        //Adding request to the queue
+        requestQueue.add(stringRequest);
+    }
+
+    //untuk spinner
+    private void getStudents(JSONArray j){
+        //Traversing through all the items in the json array
+        for(int i=0;i<j.length();i++){
+            try {
+                //Getting json object
+                JSONObject json = j.getJSONObject(i);
+
+                //Adding the name of the student to array list
+                students.add(json.getString(Config.Lingkup_Nama));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        //Setting adapter to show the items in the spinner
+        spinner.setAdapter(new ArrayAdapter<String>(Memilih_Lab.this, android.R.layout.simple_spinner_dropdown_item, students));
+    }
+
+    //Method to get student name of a particular position
+    //untuk kode lab
+    private String getLab(int position){
+        String name="";
+        try {
+            //Getting object of given index
+            JSONObject json = result.getJSONObject(position);
+
+            //Fetching name from that object
+            name = json.getString(Config.Lingkup_Lab);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //Returning the name
+        return name;
+    }
+
+    //Doing the same with this method as we did with getName()
+    //untuk nama lingkup
+    private String getNamaLingkup(int position){
+        String course="";
+        try {
+            JSONObject json = result.getJSONObject(position);
+            course = json.getString(Config.Lingkup_Nama);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return course;
+    }
+
+    //Doing the same with this method as we did with getName()
+    //untuk ID dari Lingkup
+    private String getSession(int position){
+        String session="";
+        try {
+            JSONObject json = result.getJSONObject(position);
+            session = json.getString(Config.Lingkup_ID);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return session;
     }
 }

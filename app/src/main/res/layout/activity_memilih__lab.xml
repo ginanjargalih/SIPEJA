@@ -52,47 +52,38 @@
 
                 </LinearLayout>
 
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="@color/colordevider"
+                    android:padding="16dp" />
+
                 <LinearLayout
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="16dp">
+                    android:layout_marginLeft="16dp"
+                    android:orientation="horizontal">
 
-
-                    <LinearLayout
-
+                    <TextView
+                        android:id="@+id/est"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:orientation="horizontal">
+                        android:layout_weight="1.6"
+                        android:text="Perkiraan Selesai"
+                        android:textColor="@color/colorSub"
+                        android:textSize="13dp" />
 
-                        <TextView
-                            android:id="@+id/est"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1.6"
-                            android:text="Perkiraan Selesai"
-                            android:textColor="@color/colorSub"
-                            android:textSize="13dp" />
-
-                        <TextView
-                            android:id="@+id/date"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.8"
-                            android:text="Feb 17-20"
-                            android:textColor="@color/colorTex"
-                            android:textSize="13dp" />
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:text="Feb 17-20"
+                        android:textColor="@color/colorTex"
+                        android:textSize="13dp" />
                 </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/colordevider"
-                    android:padding="16dp" />
 
                 <LinearLayout
 
@@ -200,7 +191,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Daftar Lab"
+                        android:text="Daftar Lingkup"
                         android:padding="16dp"
                         android:textSize="13dp"
                         android:textColor="@color/colorSub"
@@ -208,6 +199,52 @@
 
 
                 </LinearLayout>
+
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spinner" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="Kode Lab"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:layout_marginRight="20dp"
+                            android:text="Nama Lingkup"
+                            />
+                    </TableRow>
+                    <TableRow>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/textViewName"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="20dp"
+                            android:id="@+id/textViewCourse"
+                            />
+                    </TableRow>
+                </TableLayout>
+
+
+
 
                 <View
                     android:layout_width="match_parent"
@@ -253,10 +290,14 @@
 
 
 
+
+
         </LinearLayout>
 
 
+
     </ScrollView>
+
 
     <!--****buy****-->
     <Button
