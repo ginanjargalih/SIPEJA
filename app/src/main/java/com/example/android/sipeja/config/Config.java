@@ -64,6 +64,8 @@ public class Config {
     public static final String kota="k";
     public static final String provinsi="p";
 
+    public static final String KODE_LAB="pq";
+
     public static int db_version=1;
     public static int hitung=0;
     public static int hitung2=0;

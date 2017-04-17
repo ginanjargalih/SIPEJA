@@ -678,6 +678,8 @@ public class Order extends AppCompatActivity
                     editor.putString(Config.kota,result.getString("kotaPelanggan"));
                     editor.putString(Config.provinsi,result.getString("propinsiPelanggan"));
 
+                    editor.putString(Config.KODE_LAB,result.getString("idLab"));
+
                     //Saving values to editor
                     editor.commit();
 

@@ -58,8 +58,10 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
 
     public static final String KEY_USERNAME = "id_transaksiItem";
     public static final String Verification = "kode_transaksi";
+    public static final String KEY_LAB = "kode_lab";
 
     String kode;
+    String kode_laboratorium;
     String kode_verifikasi_order;
 
     //untuk lingkup
@@ -75,7 +77,7 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
     //TextViews to display details
     private TextView textViewName;
     private TextView textViewCourse;
-    private TextView textViewSession;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,11 +94,29 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
             window.setStatusBarColor(this.getResources().getColor(R.color.colorMain));
         }
 
+        //untuk lingkup
+        //Initializing the ArrayList
+        students = new ArrayList<String>();
+
+        //Initializing Spinner
+        spinner = (Spinner) findViewById(R.id.spinner);
+
+        //Adding an Item Selected Listener to our Spinner
+        //As we have implemented the class Spinner.OnItemSelectedListener to this class iteself we are passing this to setOnItemSelectedListener
+        spinner.setOnItemSelectedListener(this);
+
+        //Initializing TextViews
+        textViewName = (TextView) findViewById(R.id.textViewName);
+        textViewCourse = (TextView) findViewById(R.id.textViewCourse);
+
+
         //Creating a shared preference
         SharedPreferences sharedPreferences = Memilih_Lab.this.getSharedPreferences(Config.MyPREFERENCES, Context.MODE_PRIVATE);
 
         //baca data
         kode = sharedPreferences.getString(Config.Sampel_id, "");
+        kode_laboratorium= sharedPreferences.getString(Config.KODE_LAB, "");
+
         String jumlah_sampel = sharedPreferences.getString(Config.Sampel_jumlah,"");
         String jumlah_sertifikat = sharedPreferences.getString(Config.Sampel_sertifikat, "");
         String ket = sharedPreferences.getString(Config.Sampel_keterangan, "");
@@ -120,23 +140,11 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
         kode_verifikasi_order = "9cP6jF8KDGyfEPv7GBNAtA78Ha8GkzGEpSrXqWG6qye2JATby9AfEAz2yy9UMBcd";
         getData();
 
-        //untuk lingkup
-        //Initializing the ArrayList
-        students = new ArrayList<String>();
-
-        //Initializing Spinner
-        spinner = (Spinner) findViewById(R.id.spinner);
-
-        //Adding an Item Selected Listener to our Spinner
-        //As we have implemented the class Spinner.OnItemSelectedListener to this class iteself we are passing this to setOnItemSelectedListener
-        spinner.setOnItemSelectedListener(this);
-
-        //Initializing TextViews
-        textViewName = (TextView) findViewById(R.id.textViewName);
-        textViewCourse = (TextView) findViewById(R.id.textViewCourse);
-
-        //This method will fetch the data from the URL
+        //Untuk spinner
         getData_lingkup();
+
+
+
     }
 
     //content
@@ -276,7 +284,6 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
     public void onNothingSelected(AdapterView<?> adapterView) {
         textViewName.setText("");
         textViewCourse.setText("");
-        textViewSession.setText("");
     }
 
     private void getData_lingkup(){
