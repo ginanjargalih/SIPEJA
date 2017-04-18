@@ -7,6 +7,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Handler;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -45,7 +48,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class Verifikasi_order extends AppCompatActivity {
+public class Verifikasi_order extends AppCompatActivity{
 
     public static final String EXTRA_MESSAGE7 = "diterima" ;
     public static final String EXTRA_MESSAGE6 = "diterima" ;
@@ -75,6 +78,8 @@ public class Verifikasi_order extends AppCompatActivity {
     String URL = Config.URL + "detail_sampel/index.php";
     JSONParser jsonParser = new JSONParser();
     String kept;
+
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -302,6 +307,7 @@ public class Verifikasi_order extends AppCompatActivity {
             }
         }).start();
     }
+
 
     private class AttemptLogin extends AsyncTask<String, String, JSONObject> {
 
