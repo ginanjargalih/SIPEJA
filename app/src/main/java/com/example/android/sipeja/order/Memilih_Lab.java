@@ -2,10 +2,12 @@ package com.example.android.sipeja.order;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -277,6 +279,39 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
         intent2.putExtra(Verifikasi_order.EXTRA_MESSAGE6,"");
         setResult(RESULT_OK, intent2);
         finish();
+    }
+
+    public void klik_Selesai(View view) {
+
+        //Creating an alert dialog to confirm logout
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Apakah Anda yakin ?");
+        alertDialogBuilder.setPositiveButton("Ya",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        //aksi disini
+
+                        //Starting login activity
+                        Intent intent = new Intent(Memilih_Lab.this, Verifikasi_order.class);
+                        startActivity(intent);
+
+                        finish();
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("Tidak",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+
+        //Showing the alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
     }
 
     //untuk spinner

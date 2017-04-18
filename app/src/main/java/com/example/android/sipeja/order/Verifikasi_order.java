@@ -402,6 +402,8 @@ public class Verifikasi_order extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
+                        //Aksi disini
+
                         //Starting login activity
                         Intent intent = new Intent(Verifikasi_order.this, Order.class);
                         startActivity(intent);
