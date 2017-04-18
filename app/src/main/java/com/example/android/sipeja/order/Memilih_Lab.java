@@ -121,6 +121,7 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
         String jumlah_sertifikat = sharedPreferences.getString(Config.Sampel_sertifikat, "");
         String ket = sharedPreferences.getString(Config.Sampel_keterangan, "");
         String tgl = sharedPreferences.getString(Config.Sampel_perkiraanSelesai, "");
+        String lab = sharedPreferences.getString(Config.nama_lab, "");
 
         TextView txtView = (TextView) findViewById(R.id.iphone6s);
         txtView.setText(kode);
@@ -136,6 +137,12 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
 
         TextView txtView5 = (TextView) findViewById(R.id.size2);
         txtView5.setText(ket);
+
+        TextView txtView6 = (TextView) findViewById(R.id.nama_lab);
+        txtView6.setText(lab);
+
+        TextView txtView7 = (TextView) findViewById(R.id.kode_lab);
+        txtView7.setText(kode_laboratorium);
 
         kode_verifikasi_order = "9cP6jF8KDGyfEPv7GBNAtA78Ha8GkzGEpSrXqWG6qye2JATby9AfEAz2yy9UMBcd";
         getData();
@@ -298,6 +305,7 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
                             j = new JSONObject(response);
 
                             //Storing the Array of JSON String to our JSON Array
+
                             result = j.getJSONArray(Config.JSON_ARRAY);
 
                             //Calling method getStudents to get the students from the JSON Array
@@ -328,9 +336,7 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
             try {
                 //Getting json object
                 JSONObject json = j.getJSONObject(i);
-
-                //Adding the name of the student to array list
-                students.add(json.getString(Config.Lingkup_Nama));
+                students.add(json.getString(Config.Lingkup_Lab)+"-"+json.getString(Config.Lingkup_Nama));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
