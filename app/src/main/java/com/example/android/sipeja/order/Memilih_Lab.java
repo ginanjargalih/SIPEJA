@@ -293,7 +293,7 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         //aksi disini
-                        updateEmployee();
+                        updateDataLingkup();
 
                         /*//Starting login activity
                         Intent intent = new Intent(Memilih_Lab.this, Verifikasi_order.class);
@@ -430,7 +430,7 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
     }
 
     //untuk update transaksi item
-    private void updateEmployee(){
+    private void updateDataLingkup(){
 
         class UpdateEmployee extends AsyncTask<Void,Void,String> {
             ProgressDialog loading;

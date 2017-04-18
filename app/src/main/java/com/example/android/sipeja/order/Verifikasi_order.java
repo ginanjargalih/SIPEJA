@@ -77,6 +77,7 @@ public class Verifikasi_order extends AppCompatActivity{
     JSONParser jsonParser = new JSONParser();
     String kept;
 
+    String kodeTransaksi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +102,8 @@ public class Verifikasi_order extends AppCompatActivity{
         String stp = sharedPreferences.getString(Config.status_pembayaran,"");
         String tanggal_t = sharedPreferences.getString(Config.tanggal_transaksi, "");
         idTransaksi = sharedPreferences.getString(Config.id_transaksi, "");
+
+        kodeTransaksi = sharedPreferences.getString(Config.id_transaksi, "");
 
         if (stp.equals("1")){
             TextView txtView11 = (TextView) findViewById(R.id.free);
@@ -406,12 +409,7 @@ public class Verifikasi_order extends AppCompatActivity{
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         //Aksi disini
-
-                        //Starting login activity
-                        Intent intent = new Intent(Verifikasi_order.this, Order.class);
-                        startActivity(intent);
-
-                        finish();
+                        updateStatusTransaksi();
                     }
                 });
 
@@ -428,6 +426,49 @@ public class Verifikasi_order extends AppCompatActivity{
         alertDialog.show();
 
     }
+
+    //merubah status order
+    private void updateStatusTransaksi(){
+        final String status_baru = "5";
+
+        class UpdateEmployee extends AsyncTask<Void,Void,String> {
+            ProgressDialog loading;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(Verifikasi_order.this,"Update Data...","Mohon Tunggu...",false,false);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(Verifikasi_order.this,s,Toast.LENGTH_LONG).show();
+
+                //Starting login activity
+                Intent intent = new Intent(Verifikasi_order.this, Order.class);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                HashMap<String,String> hashMap = new HashMap<>();
+                hashMap.put(Config.id_transaksi,kodeTransaksi);
+                hashMap.put(Config.KEY_EMP_status,status_baru);
+
+                RequestHandler rh = new RequestHandler();
+
+                String s = rh.sendPostRequest(Config.URL_UPDATE_StatusTransaksi,hashMap);
+
+                return s;
+            }
+        }
+
+        UpdateEmployee ue = new UpdateEmployee();
+        ue.execute();
+    }
+
 
 
 
