@@ -37,7 +37,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:gravity="center"
-                android:text="Pilih Lab"
+                android:text="Pilih Lingkup"
                 />
 
         </LinearLayout>
