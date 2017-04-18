@@ -7,9 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Handler;
-import android.support.design.widget.NavigationView;
-import android.support.v4.widget.SwipeRefreshLayout;
+
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -32,10 +30,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.android.sipeja.JSONParser;
-import com.example.android.sipeja.Menu_awal;
+
 import com.example.android.sipeja.R;
 import com.example.android.sipeja.config.Config;
-import com.example.android.sipeja.profile.Profile;
+
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -79,7 +77,6 @@ public class Verifikasi_order extends AppCompatActivity{
     JSONParser jsonParser = new JSONParser();
     String kept;
 
-    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

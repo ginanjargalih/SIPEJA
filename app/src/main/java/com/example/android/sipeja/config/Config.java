@@ -123,4 +123,8 @@ public class Config {
 
     //JSON array name
     public static final String JSON_ARRAY = "result";
+
+    //untuk update data
+    public static final String URL_UPDATE_TransaksiItem = "http://sipeja.pe.hu/API_Lingkup/Update_Transaksi_item.php";
+    public static final String KEY_EMP_NAME = "lingkupId";
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -79,6 +80,7 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
     //TextViews to display details
     private TextView textViewName;
     private TextView textViewCourse;
+    private String id_lingkup;
 
 
     @Override
@@ -291,12 +293,13 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         //aksi disini
+                        updateEmployee();
 
-                        //Starting login activity
+                        /*//Starting login activity
                         Intent intent = new Intent(Memilih_Lab.this, Verifikasi_order.class);
                         startActivity(intent);
 
-                        finish();
+                        finish();*/
                     }
                 });
 
@@ -320,6 +323,8 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
         //Setting the values to textviews for a selected item
         textViewName.setText(getLab(position));
         textViewCourse.setText(getNamaLingkup(position));
+
+        id_lingkup=getSession(position);
     }
 
     @Override
@@ -423,4 +428,41 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
         }
         return session;
     }
+
+    //untuk update transaksi item
+    private void updateEmployee(){
+
+        class UpdateEmployee extends AsyncTask<Void,Void,String> {
+            ProgressDialog loading;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(Memilih_Lab.this,"Update Data...","Mohon Tunggu...",false,false);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(Memilih_Lab.this,s,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                HashMap<String,String> hashMap = new HashMap<>();
+                hashMap.put(Config.Sampel_id,kode);
+                hashMap.put(Config.KEY_EMP_NAME,id_lingkup);
+
+                RequestHandler rh = new RequestHandler();
+
+                String s = rh.sendPostRequest(Config.URL_UPDATE_TransaksiItem,hashMap);
+
+                return s;
+            }
+        }
+
+        UpdateEmployee ue = new UpdateEmployee();
+        ue.execute();
+    }
+
 }
