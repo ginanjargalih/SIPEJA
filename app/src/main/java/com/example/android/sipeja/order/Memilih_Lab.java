@@ -60,7 +60,7 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
 
     public static final String KEY_USERNAME = "id_transaksiItem";
     public static final String Verification = "kode_transaksi";
-    public static final String KEY_LAB = "kode_lab";
+    public static final String KEY_LAB = "id";
 
     String kode;
     String kode_laboratorium;
