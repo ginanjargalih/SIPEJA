@@ -430,6 +430,7 @@ public class Verifikasi_order extends AppCompatActivity{
     //merubah status order
     private void updateStatusTransaksi(){
         final String status_baru = "5";
+        final String random = "kAHbCrVMuMv5b2DF5WMFJ8QjxLVsSqmrVALjBQFwVYfXCXJU8rgNrHFQAH74JtFt";
 
         class UpdateEmployee extends AsyncTask<Void,Void,String> {
             ProgressDialog loading;
@@ -456,6 +457,7 @@ public class Verifikasi_order extends AppCompatActivity{
                 HashMap<String,String> hashMap = new HashMap<>();
                 hashMap.put(Config.id_transaksi,kodeTransaksi);
                 hashMap.put(Config.KEY_EMP_status,status_baru);
+                hashMap.put(Config.KEY_EMP_Verifikasi,random);
 
                 RequestHandler rh = new RequestHandler();
 

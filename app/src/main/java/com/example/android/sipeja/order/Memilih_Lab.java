@@ -431,6 +431,7 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
 
     //untuk update transaksi item
     private void updateDataLingkup(){
+        final String random = "dApw4BxhCn8Rbkfkk9jSf4RNfEUKSxfX3gx857LETpLcHUZDhJWGbf5gqr6x458Q";
 
         class UpdateEmployee extends AsyncTask<Void,Void,String> {
             ProgressDialog loading;
@@ -452,6 +453,7 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
                 HashMap<String,String> hashMap = new HashMap<>();
                 hashMap.put(Config.Sampel_id,kode);
                 hashMap.put(Config.KEY_EMP_NAME,id_lingkup);
+                hashMap.put(Config.KEY_EMP_Verifikasi,random);
 
                 RequestHandler rh = new RequestHandler();
 

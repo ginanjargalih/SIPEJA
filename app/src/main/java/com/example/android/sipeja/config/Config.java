@@ -132,4 +132,7 @@ public class Config {
     public static final String URL_UPDATE_StatusTransaksi = "http://sipeja.pe.hu/API_Lingkup/Update_Status_Transaksi.php";
     public static final String KEY_EMP_status = "status_baru";
 
+    //kode
+    public static final String KEY_EMP_Verifikasi = "verif_code";
+
 }
