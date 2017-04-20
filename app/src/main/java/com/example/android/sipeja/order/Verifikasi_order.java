@@ -78,6 +78,7 @@ public class Verifikasi_order extends AppCompatActivity{
     String kept;
 
     String kodeTransaksi;
+    String id_pegawai;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +103,7 @@ public class Verifikasi_order extends AppCompatActivity{
         String stp = sharedPreferences.getString(Config.status_pembayaran,"");
         String tanggal_t = sharedPreferences.getString(Config.tanggal_transaksi, "");
         idTransaksi = sharedPreferences.getString(Config.id_transaksi, "");
+        id_pegawai = sharedPreferences.getString(Config.id_pegawai, "");
 
         kodeTransaksi = sharedPreferences.getString(Config.id_transaksi, "");
 
@@ -458,6 +460,7 @@ public class Verifikasi_order extends AppCompatActivity{
                 hashMap.put(Config.id_transaksi,kodeTransaksi);
                 hashMap.put(Config.KEY_EMP_status,status_baru);
                 hashMap.put(Config.KEY_EMP_Verifikasi,random);
+                hashMap.put(Config.KEY_EMP_log,id_pegawai);
 
                 RequestHandler rh = new RequestHandler();
 

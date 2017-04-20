@@ -13,6 +13,7 @@ public class Config {
     public static final String MyPREFERENCES = "MyPrefs" ;
 
     //This would be used to store the email of current logged in user
+    public static final String id_pegawai = "id_peg";
     public static final String Name = "nameKey";
     public static final String NamePengguna = "npKey";
     public static final String Password = "passKey";
@@ -131,6 +132,7 @@ public class Config {
     //untuk update data status transaksi
     public static final String URL_UPDATE_StatusTransaksi = "http://sipeja.pe.hu/API_Lingkup/Update_Status_Transaksi.php";
     public static final String KEY_EMP_status = "status_baru";
+    public static final String KEY_EMP_log = "id_pegawai";
 
     //kode
     public static final String KEY_EMP_Verifikasi = "verif_code";

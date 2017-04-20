@@ -143,6 +143,7 @@ public class Login extends AppCompatActivity  {
                     //Adding values to editor
                     editor.putBoolean(Config.LOGGEDIN_SHARED_PREF, true);
 
+                    editor.putString(Config.id_pegawai,result.getString("id_user"));
                     editor.putString(Config.NamePengguna,result.getString("user"));
                     editor.putString(Config.Name,result.getString("nama"));
                     editor.putString(Config.Email,result.getString("email"));

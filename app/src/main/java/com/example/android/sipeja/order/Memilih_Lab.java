@@ -81,6 +81,7 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
     private TextView textViewName;
     private TextView textViewCourse;
     private String id_lingkup;
+    String id_pegawai;
 
 
     @Override
@@ -120,6 +121,7 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
         //baca data
         kode = sharedPreferences.getString(Config.Sampel_id, "");
         kode_laboratorium= sharedPreferences.getString(Config.KODE_LAB, "");
+        id_pegawai = sharedPreferences.getString(Config.id_pegawai, "");
 
         String jumlah_sampel = sharedPreferences.getString(Config.Sampel_jumlah,"");
         String jumlah_sertifikat = sharedPreferences.getString(Config.Sampel_sertifikat, "");
@@ -454,6 +456,7 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
                 hashMap.put(Config.Sampel_id,kode);
                 hashMap.put(Config.KEY_EMP_NAME,id_lingkup);
                 hashMap.put(Config.KEY_EMP_Verifikasi,random);
+                hashMap.put(Config.KEY_EMP_log,id_pegawai);
 
                 RequestHandler rh = new RequestHandler();
 
