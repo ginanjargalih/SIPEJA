@@ -18,7 +18,8 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:id="@+id/toolbar2">
 
             <ImageView
                 android:layout_weight="0"
@@ -34,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20dp"
                 android:gravity="center"
-                android:text="Administrasi Lab"
+                android:text="Pilih Teknisi"
                 />
 
         </LinearLayout>
@@ -58,5 +59,4 @@
     </LinearLayout>
 
 </android.support.v7.widget.Toolbar>
-
 

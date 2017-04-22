@@ -48,7 +48,8 @@
         <activity android:name=".Login_pelanggan" />
         <activity android:name=".order.Verifikasi_order" />
         <activity android:name=".order.Administrasi_Lab" />
-        <activity android:name=".order.Memilih_Lab"></activity>
+        <activity android:name=".order.Memilih_Lab" />
+        <activity android:name=".order.Memilih_Teknisi"></activity>
     </application>
 
 </manifest>
