@@ -45,8 +45,8 @@ public class Memilih_Teknisi extends AppCompatActivity {
 
     public int TOTAL_LIST_ITEMS;
     public int NUM_ITEMS_PAGE;
-    private int noOfBtns; //
-    private Button[] btns; //
+    private int noOfBtns;
+    private Button[] btns;
 
     public static final String KEY_USERNAME = "id_transaksiItem";
     public static final String Verification = "kode_transaksi";
