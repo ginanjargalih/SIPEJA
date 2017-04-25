@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
+
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -44,7 +45,6 @@ import java.util.Map;
 
 public class Administrasi_Lab extends AppCompatActivity {
 
-    public static final String EXTRA_MESSAGE6 = "diterima" ;
     public static final String EXTRA_MESSAGE8 = "diterima" ;
     String idTransaksi;
     String kode_verifikasi_order;
@@ -363,7 +363,7 @@ public class Administrasi_Lab extends AppCompatActivity {
     public void klik_detail_sampel() {
         Intent intent = new Intent(this, Memilih_Teknisi.class);
         //cara 2
-        intent.putExtra(Memilih_Teknisi.EXTRA_MESSAGE8, "Detail Sampel");
+        intent.putExtra(Memilih_Teknisi.EXTRA_MESSAGE, "Detail Sampel");
         startActivityForResult(intent, ACT2_REQUEST);
     }
 
@@ -378,14 +378,15 @@ public class Administrasi_Lab extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent3 = getIntent();
-        intent3.putExtra(Detail_Order.EXTRA_MESSAGE6,"");
-        setResult(RESULT_OK, intent3);
+        Intent intent2 = getIntent();
+        intent2.putExtra(Detail_Order.EXTRA_MESSAGE6,"");
+        setResult(RESULT_OK, intent2);
         finish();
     }
 
 
-    public void klikSelesai(View view) {
+
+    public void klikSelesai2(View view) {
 
         //Creating an alert dialog to confirm logout
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -418,7 +419,7 @@ public class Administrasi_Lab extends AppCompatActivity {
         final String status_baru = "6";
         final String random = "kAHbCrVMuMv5b2DF5WMFJ8QjxLVsSqmrVALjBQFwVYfXCXJU8rgNrHFQAH74JtFt";
 
-        class UpdateEmployee extends AsyncTask<Void,Void,String> {
+        class UpdateEmployee2 extends AsyncTask<Void,Void,String> {
             ProgressDialog loading;
             @Override
             protected void onPreExecute() {
@@ -448,12 +449,12 @@ public class Administrasi_Lab extends AppCompatActivity {
 
                 RequestHandler rh = new RequestHandler();
 
-                String s = rh.sendPostRequest(Config.URL_UPDATE_StatusTransaksi,hashMap);
+                String s = rh.sendPostRequest(Config.URL_UPDATE_StatusTransaksi2,hashMap);
 
                 return s;
             }
         }
-        UpdateEmployee ue = new UpdateEmployee();
+        UpdateEmployee2 ue = new UpdateEmployee2();
         ue.execute();
     }
 }

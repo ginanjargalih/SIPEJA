@@ -131,6 +131,9 @@ public class Config {
 
     //untuk update data status transaksi
     public static final String URL_UPDATE_StatusTransaksi = "http://sipeja.pe.hu/API_Lingkup/Update_Status_Transaksi.php";
+
+    public static final String URL_UPDATE_StatusTransaksi2 = "http://sipeja.pe.hu/administrasi_lab/Update_Status_Transaksi.php";
+
     public static final String KEY_EMP_status = "status_baru";
     public static final String KEY_EMP_log = "id_pegawai";
 
@@ -139,7 +142,7 @@ public class Config {
 
     //teknisi lab
     //untuk insert data ke tabel teknisi sampel
-    public static final String URL_UPDATE_Teknisi_Sampel = "http://sipeja.pe.hu/administrasi_lab/Update_Status_Transaksi.php";
+    public static final String URL_UPDATE_Teknisi_Sampel = "http://sipeja.pe.hu/administrasi_lab/Update_Teknisi_Sampel.php";
 
     //untuk menyimpan teknisi lab yang terpiih
     public static final String KEY_ID_TEKNISI = "id";

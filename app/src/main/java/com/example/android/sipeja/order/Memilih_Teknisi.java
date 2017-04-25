@@ -39,7 +39,7 @@ import static com.example.android.sipeja.config.Config.KEY_ID_TEKNISI;
 
 public class Memilih_Teknisi extends AppCompatActivity {
 
-    public static final String EXTRA_MESSAGE8 = "Memilih teknisi" ;
+    public static final String EXTRA_MESSAGE = "Memilih Teknisi";
 
     // deklarasi variabel
     //ListView listLog; //deklarasi list untuk menampilkan parameter

@@ -52,12 +52,16 @@ public class Verifikasi_order extends AppCompatActivity{
     public static final String EXTRA_MESSAGE6 = "diterima" ;
     String idTransaksi;
     String kode_verifikasi_order;
+    String status;
 
     static final int ACT2_REQUEST = 99;  // request code
 
     // deklarasi variabel
     private ProgressDialog loading;
     public int hitungLog;
+
+    String status_baru;
+
 
 
     ListView listLog; //deklarasi list untuk menampilkan username dan aktivitas
@@ -104,6 +108,7 @@ public class Verifikasi_order extends AppCompatActivity{
         String tanggal_t = sharedPreferences.getString(Config.tanggal_transaksi, "");
         idTransaksi = sharedPreferences.getString(Config.id_transaksi, "");
         id_pegawai = sharedPreferences.getString(Config.id_pegawai, "");
+        status = sharedPreferences.getString(Config.status_transaki,"");
 
         kodeTransaksi = sharedPreferences.getString(Config.id_transaksi, "");
 
@@ -361,9 +366,6 @@ public class Verifikasi_order extends AppCompatActivity{
                     //buka detail
                     klik_detail_sampel();
 
-
-
-
                 } else {
                     Toast.makeText(getApplicationContext(), "Unable to retrieve any data from server", Toast.LENGTH_LONG).show();
                 }
@@ -377,10 +379,20 @@ public class Verifikasi_order extends AppCompatActivity{
 
     //untuk menampilkan detail sampel
     public void klik_detail_sampel() {
-        Intent intent = new Intent(this, Memilih_Lab.class);
-        //cara 2
-        intent.putExtra(Memilih_Lab.EXTRA_MESSAGE8, "Detail Sampel");
-        startActivityForResult(intent, ACT2_REQUEST);
+        if (status.equals("4")){
+            Intent intent = new Intent(this, Memilih_Lab.class);
+            //cara 2
+            intent.putExtra(Memilih_Lab.EXTRA_MESSAGE8, "Detail Sampel");
+            startActivityForResult(intent, ACT2_REQUEST);
+        }
+        else if (status.equals("5")){
+            Intent intent = new Intent(this, Memilih_Teknisi.class);
+            //cara 2
+            intent.putExtra(Memilih_Teknisi.EXTRA_MESSAGE, "Detail Sampel");
+            startActivityForResult(intent, ACT2_REQUEST);
+        }
+
+
     }
 
     //tombol
@@ -430,7 +442,14 @@ public class Verifikasi_order extends AppCompatActivity{
 
     //merubah status order
     private void updateStatusTransaksi(){
-        final String status_baru = "5";
+
+        if (status.equals("4")){
+            status_baru = "5";
+        }
+        else if (status.equals("5")){
+            status_baru = "6";
+        }
+
         final String random = "kAHbCrVMuMv5b2DF5WMFJ8QjxLVsSqmrVALjBQFwVYfXCXJU8rgNrHFQAH74JtFt";
 
         class UpdateEmployee extends AsyncTask<Void,Void,String> {

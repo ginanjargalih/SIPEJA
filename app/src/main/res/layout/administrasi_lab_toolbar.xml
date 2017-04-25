@@ -58,7 +58,7 @@
                     android:textSize="15dp"
                     android:gravity="center"
                     android:text="Selesai"
-                    android:onClick="klikSelesai"
+                    android:onClick="klikSelesai2"
                     />
 
             </LinearLayout>

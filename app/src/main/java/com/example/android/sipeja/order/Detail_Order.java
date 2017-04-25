@@ -919,9 +919,9 @@ public class Detail_Order extends AppCompatActivity implements BaseSliderView.On
 
     //untuk menampilkan admin lab
     public void klik_admin_lab() {
-        Intent intent = new Intent(this, Administrasi_Lab.class);
+        Intent intent = new Intent(this, Verifikasi_order.class);
         //cara 2
-        intent.putExtra(Administrasi_Lab.EXTRA_MESSAGE8, "Admin Order");
+        intent.putExtra(Verifikasi_order.EXTRA_MESSAGE7, "Admin Order");
         startActivityForResult(intent, ACT2_REQUEST);
     }
 
