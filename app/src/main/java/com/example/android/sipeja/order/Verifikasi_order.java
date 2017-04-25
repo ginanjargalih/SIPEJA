@@ -265,7 +265,6 @@ public class Verifikasi_order extends AppCompatActivity{
                 items.add(a + "-" + b );
                 hitungLog = hitungLog + 1;
 
-
             }
 
             TOTAL_LIST_ITEMS = hitungLog;
@@ -469,13 +468,8 @@ public class Verifikasi_order extends AppCompatActivity{
                 return s;
             }
         }
-
         UpdateEmployee ue = new UpdateEmployee();
         ue.execute();
     }
-
-
-
-
 
 }

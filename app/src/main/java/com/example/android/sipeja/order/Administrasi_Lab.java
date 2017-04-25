@@ -2,11 +2,13 @@ package com.example.android.sipeja.order;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -376,9 +378,82 @@ public class Administrasi_Lab extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent2 = getIntent();
-        intent2.putExtra(Detail_Order.EXTRA_MESSAGE6,"");
-        setResult(RESULT_OK, intent2);
+        Intent intent3 = getIntent();
+        intent3.putExtra(Detail_Order.EXTRA_MESSAGE6,"");
+        setResult(RESULT_OK, intent3);
         finish();
+    }
+
+
+    public void klikSelesai(View view) {
+
+        //Creating an alert dialog to confirm logout
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Apakah Anda yakin ?");
+        alertDialogBuilder.setPositiveButton("Ya",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        //Aksi disini
+                        updateStatusTransaksi();
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("Tidak",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+
+        //Showing the alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+    }
+
+    //merubah status order
+    private void updateStatusTransaksi(){
+        final String status_baru = "6";
+        final String random = "kAHbCrVMuMv5b2DF5WMFJ8QjxLVsSqmrVALjBQFwVYfXCXJU8rgNrHFQAH74JtFt";
+
+        class UpdateEmployee extends AsyncTask<Void,Void,String> {
+            ProgressDialog loading;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(Administrasi_Lab.this,"Update Data...","Mohon Tunggu...",false,false);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(Administrasi_Lab.this,s,Toast.LENGTH_LONG).show();
+
+                //Starting login activity
+                Intent intent = new Intent(Administrasi_Lab.this, Order.class);
+                startActivity(intent);
+                finish();
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                HashMap<String,String> hashMap = new HashMap<>();
+                hashMap.put(Config.id_transaksi,kodeTransaksi);
+                hashMap.put(Config.KEY_EMP_status,status_baru);
+                hashMap.put(Config.KEY_EMP_Verifikasi,random);
+                hashMap.put(Config.KEY_EMP_log,id_pegawai);
+
+                RequestHandler rh = new RequestHandler();
+
+                String s = rh.sendPostRequest(Config.URL_UPDATE_StatusTransaksi,hashMap);
+
+                return s;
+            }
+        }
+        UpdateEmployee ue = new UpdateEmployee();
+        ue.execute();
     }
 }

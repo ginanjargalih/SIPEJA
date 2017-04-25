@@ -137,4 +137,12 @@ public class Config {
     //kode
     public static final String KEY_EMP_Verifikasi = "verif_code";
 
+    //teknisi lab
+    //untuk insert data ke tabel teknisi sampel
+    public static final String URL_UPDATE_Teknisi_Sampel = "http://sipeja.pe.hu/administrasi_lab/Update_Status_Transaksi.php";
+
+    //untuk menyimpan teknisi lab yang terpiih
+    public static final String KEY_ID_TEKNISI = "id";
+    public static final String KEY_NAMA_TEKNISI = "name";
+
 }

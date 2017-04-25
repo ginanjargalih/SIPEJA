@@ -4,10 +4,6 @@
     android:id="@+id/activity_memilih__teknisi"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.android.sipeja.order.Memilih_Teknisi">
 
     <include
@@ -25,12 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#fff"
-                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -148,7 +138,7 @@
                 <LinearLayout
 
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
@@ -240,55 +230,36 @@
                     android:background="@color/colordevider"
                     android:padding="16dp" />
 
-                <View
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="223dp"
+                android:id="@+id/listTeknisi"
+                android:choiceMode="multipleChoice"
+                android:layout_above="@+id/bSubmit"
+                />
+
+            <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginTop="16dp"
                     android:background="@color/colordevider"
                     android:padding="16dp" />
 
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#f2f2f2"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="16dp"
-                        android:text="Daftar Parameter"
-                        android:textColor="@color/colorSub"
-                        android:textSize="13dp" />
-
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="232dp"
-                android:layout_marginTop="10dp"
-                android:id="@+id/listview2"
-                android:layout_marginBottom="50dp"/>
-
-            <View
-                android:layout_marginTop="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colordevider"
-                android:padding="16dp"
-                />
-
-
-
-
-
         </LinearLayout>
 
-
-
     </ScrollView>
+    <Button
+        android:text="SIMPAN"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bSubmit"
+        android:layout_alignParentBottom="true"
+        android:background="#4c71f5"
+        android:textSize="16dp"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:padding="16dp"
+        android:enabled="false"
+        android:onClick="klik_simpan" />
+
 </RelativeLayout>

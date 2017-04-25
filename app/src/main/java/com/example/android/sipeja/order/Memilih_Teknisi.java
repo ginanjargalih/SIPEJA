@@ -2,10 +2,14 @@ package com.example.android.sipeja.order;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,15 +35,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.example.android.sipeja.config.Config.KEY_ID_TEKNISI;
+
 public class Memilih_Teknisi extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE8 = "Memilih teknisi" ;
 
     // deklarasi variabel
-    private ProgressDialog loading;
-    public int hitungLog;
-    ListView listLog; //deklarasi list untuk menampilkan parameter
+    //ListView listLog; //deklarasi list untuk menampilkan parameter
+    //public int hitungLog;
 
+    ListView listTeknisi;
+    String[] mIdTekLab;
+    String[] mNamaTekLab;
+    Button bSubmit;
+    SparseBooleanArray sparseBooleanArray ;
+    private ProgressDialog loading;
     ArrayAdapter<String> adapter;
     private ArrayList<String> items = new ArrayList<>();
 
@@ -55,7 +66,6 @@ public class Memilih_Teknisi extends AppCompatActivity {
     String kode;
     String kode_laboratorium;
     String kode_verifikasi_order;
-
     String id_pegawai;
 
     @Override
@@ -98,15 +108,21 @@ public class Memilih_Teknisi extends AppCompatActivity {
         txtView7.setText(kode_laboratorium);
 
         kode_verifikasi_order = "9cP6jF8KDGyfEPv7GBNAtA78Ha8GkzGEpSrXqWG6qye2JATby9AfEAz2yy9UMBcd";
+
+        //aksi saat submit
+        bSubmit = (Button) findViewById(R.id.bSubmit);
+
+
         getData();
     }
-
+/*
     //content
-    /**
+    *//**
      * Method for loading data in listview
      * @param number
-     */
-    private void loadList(int number)
+     *//*
+
+   *//* private void loadList(int number)
     {
         ArrayList<String> sort = new ArrayList<String>();
 
@@ -135,14 +151,14 @@ public class Memilih_Teknisi extends AppCompatActivity {
                 String pesan = isiBaris;
             }
         });
-    }
+    }*/
 
     //fungsi untuk mengambil data dari database
     private void getData() {
 
         loading = ProgressDialog.show(this,"Mohon Tunggu","Pengambilan data..",false,false);
 
-        String url = Config.URL+ "API_Verifikasi_Order/parameter.php"; //inisialiasai url
+        String url = Config.URL+ "administrasi_lab/teknisiLab.php"; //inisialiasai url
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -153,19 +169,10 @@ public class Memilih_Teknisi extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                loading.dismiss();
                 Toast.makeText(Memilih_Teknisi.this,"Tidak ada Koneksi",Toast.LENGTH_LONG).show();
             }
-        })
-        {
-            //fungsi untuk memasukan nilai untuk di POST
-            @Override
-            protected Map<String,String> getParams(){
-                Map<String,String> params = new HashMap<String, String>();
-                params.put(KEY_USERNAME,kode);
-                params.put(Verification,kode_verifikasi_order);
-                return params;
-            }
-        };
+        });
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
@@ -173,37 +180,63 @@ public class Memilih_Teknisi extends AppCompatActivity {
 
     //menampilkan parameter
     private void showJSON(String response){
-        listLog = (ListView) findViewById(R.id.listview2);
-        try {
-            JSONArray result = new JSONArray(response);
 
+        listTeknisi = (ListView) findViewById(R.id.listTeknisi);
+        try {
+            final JSONArray result = new JSONArray(response);
+            mIdTekLab = new String[result.length()];
+            mNamaTekLab = new String[result.length()];
+
+            // Parsing json
             for (int i = 0; i < result.length(); i++) {
                 JSONObject Data = result.getJSONObject(i);
-                String a = Data.getString(Config.Parameter_nama);
-                String b = Data.getString(Config.Parameter_jumlah);
-                String c = Data.getString(Config.Parameter_harga);
-                String d = Data.getString(Config.Parameter_metode);
-
-                // your code
-                items.add("Nama Parameter : "+a+  System.getProperty("line.separator") +
-                        "Jumlah : " + b + System.getProperty("line.separator")+ "Harga : " + c + System.getProperty("line.separator")+
-                        "Metode : "+d);
-                hitungLog = hitungLog + 1;
-
-
+                mIdTekLab[i] = Data.getString(Config.KEY_ID_TEKNISI);
+                mNamaTekLab[i] = Data.getString(Config.KEY_NAMA_TEKNISI);
             }
 
-            TOTAL_LIST_ITEMS = hitungLog;
-            NUM_ITEMS_PAGE = 25; //25 data per list
+            listTeknisi.setOnItemClickListener(new AdapterView.OnItemClickListener()
+            {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    // TODO Auto-generated method stub
 
-            loadList(0);
+                    sparseBooleanArray = listTeknisi.getCheckedItemPositions(); //
 
-        }catch(JSONException e){
+                    String ValueHolder = "" ; //
+
+                    int i = 0 ;
+
+                    if(listTeknisi.getCheckedItemCount() > 0){
+                        bSubmit.setEnabled(true);
+
+                    }else{
+                        bSubmit.setEnabled(false);
+                    }
+
+                    while (i < sparseBooleanArray.size()) { //
+
+                        if (sparseBooleanArray.valueAt(i)) {
+
+                            ValueHolder += mNamaTekLab [ sparseBooleanArray.keyAt(i) ] + ",";
+                        }
+
+                        i++ ;
+                    }
+
+                    ValueHolder = ValueHolder.replaceAll("(,)*$", "");
+
+                    Toast.makeText(Memilih_Teknisi.this, "" + ValueHolder, Toast.LENGTH_LONG).show();
+
+
+                }
+            });
+        } catch (JSONException e) {
             e.printStackTrace();
-
-        }
-
-        //parsing json
+        }  ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (Memilih_Teknisi.this,
+                        android.R.layout.simple_list_item_multiple_choice,
+                        android.R.id.text1, mNamaTekLab );
+        listTeknisi.setAdapter(adapter);
         loading.dismiss();
 
     }
@@ -224,4 +257,82 @@ public class Memilih_Teknisi extends AppCompatActivity {
         setResult(RESULT_OK, intent2);
         finish();
     }
+
+    public void klik_simpan(View view) {
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage("Apakah Anda yakin ?");
+        alertDialogBuilder.setPositiveButton("Ya",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        //aksi disini
+                        int i;
+                        for(i=0; i< mIdTekLab.length;i++) {
+                            updateTeknisiSampel(mIdTekLab[i]);
+                        }
+                        /*//Starting login activity
+                        Intent intent = new Intent(Memilih_Lab.this, Verifikasi_order.class);
+                        startActivity(intent);
+
+                        finish();*/
+                    }
+                });
+
+        alertDialogBuilder.setNegativeButton("Tidak",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                    }
+                });
+
+        //Showing the alert dialog
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+    }
+
+    //untuk update transaksi item
+    private void updateTeknisiSampel(final String mIdTekLab){
+        final String random = "dApw4BxhCn8Rbkfkk9jSf4RNfEUKSxfX3gx857LETpLcHUZDhJWGbf5gqr6x458Q";
+
+        class UpdateEmployee extends AsyncTask<Void,Void,String> {
+            ProgressDialog loading;
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                loading = ProgressDialog.show(Memilih_Teknisi.this,"Update Data...","Mohon Tunggu...",false,false);
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                loading.dismiss();
+                Toast.makeText(Memilih_Teknisi.this,s,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            protected String doInBackground(Void... params) {
+                HashMap<String,String> hashMap = new HashMap<>();
+
+                hashMap.put(Config.KEY_ID_TEKNISI,mIdTekLab);
+                hashMap.put(Config.Sampel_id,kode);
+                hashMap.put(Config.KEY_EMP_Verifikasi,random);
+
+                //hashMap.put(Config.KEY_EMP_NAME,id_lingkup);
+                //hashMap.put(Config.KEY_EMP_log,id_pegawai);
+
+                RequestHandler rh = new RequestHandler();
+
+                String s = rh.sendPostRequest(Config.URL_UPDATE_Teknisi_Sampel,hashMap);
+
+                return s;
+            }
+        }
+
+        UpdateEmployee ue = new UpdateEmployee();
+        ue.execute();
+    }
+
 }

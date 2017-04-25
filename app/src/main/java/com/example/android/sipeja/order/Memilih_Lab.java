@@ -83,12 +83,10 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
     private String id_lingkup;
     String id_pegawai;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_memilih__lab);
-
 
         //warna status bar
         if (Build.VERSION.SDK_INT >= 21) {
@@ -248,7 +246,6 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
                         "Jumlah : " + b + System.getProperty("line.separator")+ "Harga : " + c + System.getProperty("line.separator")+
                         "Metode : "+d);
                 hitungLog = hitungLog + 1;
-
 
             }
 
@@ -469,5 +466,4 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
         UpdateEmployee ue = new UpdateEmployee();
         ue.execute();
     }
-
 }
