@@ -90,7 +90,6 @@ public class Log extends AppCompatActivity
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Log Aktivitas");
 
-
         //warna status bar
         if(Build.VERSION.SDK_INT >= 21){
 

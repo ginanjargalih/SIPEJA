@@ -147,7 +147,6 @@ public class Config {
     //untuk menyimpan teknisi lab yang terpiih
     public static final String KEY_ID_TEKNISI = "id";
     public static final String KEY_NAMA_TEKNISI = "name";
-
     public static final String KEY_Teknisi_Masuk = "id_teknisi";
 
 }

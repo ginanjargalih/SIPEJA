@@ -184,7 +184,6 @@ public class Memilih_Teknisi extends AppCompatActivity {
 
                     Toast.makeText(Memilih_Teknisi.this, "" + ValueHolder, Toast.LENGTH_LONG).show();
 
-
                 }
             });
         } catch (JSONException e) {
@@ -195,7 +194,6 @@ public class Memilih_Teknisi extends AppCompatActivity {
                         android.R.id.text1, mNamaTekLab );
         listTeknisi.setAdapter(adapter);
         loading.dismiss();
-
     }
 
     //tombol
@@ -224,9 +222,17 @@ public class Memilih_Teknisi extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         //aksi disini
-                        int i;
-                        for(i=0; i< id_teknisi.length;i++) {
+
+                     /*   for(i=0; i< id_teknisi.length;i++) {
                             updateTeknisiSampel(id_teknisi[i]);
+                        }*/
+                        int i =0;
+                        while (i < sparseBooleanArray.size()) { //
+
+                            if (sparseBooleanArray.valueAt(i)) {
+                                updateTeknisiSampel(mIdTekLab[ sparseBooleanArray.keyAt(i) ]);
+                            }
+                            i++ ;
                         }
 
                     }

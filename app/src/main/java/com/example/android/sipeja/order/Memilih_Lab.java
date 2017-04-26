@@ -271,7 +271,6 @@ public class Memilih_Lab extends AppCompatActivity implements Spinner.OnItemSele
         intent2.putExtra(Verifikasi_order.EXTRA_MESSAGE6,"");
         setResult(RESULT_OK, intent2);
         finish();
-
     }
 
     @Override
