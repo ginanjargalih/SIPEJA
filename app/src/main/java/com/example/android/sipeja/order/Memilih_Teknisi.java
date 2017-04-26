@@ -58,6 +58,9 @@ public class Memilih_Teknisi extends AppCompatActivity {
     String kode_verifikasi_order;
     String id_pegawai;
 
+    //misal buat yang dipilih
+    String[] id_teknisi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -222,8 +225,8 @@ public class Memilih_Teknisi extends AppCompatActivity {
                     public void onClick(DialogInterface arg0, int arg1) {
                         //aksi disini
                         int i;
-                        for(i=0; i< mIdTekLab.length;i++) {
-                            updateTeknisiSampel(mIdTekLab[i]);
+                        for(i=0; i< id_teknisi.length;i++) {
+                            updateTeknisiSampel(id_teknisi[i]);
                         }
 
                     }
