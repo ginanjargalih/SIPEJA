@@ -279,8 +279,7 @@ public class Memilih_Teknisi extends AppCompatActivity {
                 hashMap.put(Config.KEY_Teknisi_Masuk,mIdTekLab);
                 hashMap.put(Config.KEY_EMP_Verifikasi,random);
 
-                //hashMap.put(Config.KEY_EMP_NAME,id_lingkup);
-                //hashMap.put(Config.KEY_EMP_log,id_pegawai);
+                hashMap.put(Config.KEY_EMP_log,id_pegawai);
 
                 RequestHandler rh = new RequestHandler();
 
