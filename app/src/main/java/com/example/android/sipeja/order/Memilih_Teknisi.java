@@ -51,17 +51,7 @@ public class Memilih_Teknisi extends AppCompatActivity {
     Button bSubmit;
     SparseBooleanArray sparseBooleanArray ;
     private ProgressDialog loading;
-    ArrayAdapter<String> adapter;
-    private ArrayList<String> items = new ArrayList<>();
 
-    public int TOTAL_LIST_ITEMS;
-    public int NUM_ITEMS_PAGE;
-    private int noOfBtns;
-    private Button[] btns;
-
-    public static final String KEY_USERNAME = "id_transaksiItem";
-    public static final String Verification = "kode_transaksi";
-    public static final String KEY_LAB = "id";
 
     String kode;
     String kode_laboratorium;
@@ -115,43 +105,7 @@ public class Memilih_Teknisi extends AppCompatActivity {
 
         getData();
     }
-/*
-    //content
-    *//**
-     * Method for loading data in listview
-     * @param number
-     *//*
 
-   *//* private void loadList(int number)
-    {
-        ArrayList<String> sort = new ArrayList<String>();
-
-        int start = number * NUM_ITEMS_PAGE;
-        for(int i=start;i<(start)+NUM_ITEMS_PAGE;i++)
-        {
-            if(i<items.size())
-            {
-                sort.add(items.get(i));
-            }
-            else
-            {
-                break;
-            }
-        }
-        adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,sort);
-        listLog.setAdapter(adapter);
-
-        //untuk bisa di klik
-        listLog.setClickable(true);
-        listLog.setOnItemClickListener( new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                String isiBaris = (String) listLog.getItemAtPosition(position);
-                String pesan = isiBaris;
-            }
-        });
-    }*/
 
     //fungsi untuk mengambil data dari database
     private void getData() {
@@ -271,11 +225,7 @@ public class Memilih_Teknisi extends AppCompatActivity {
                         for(i=0; i< mIdTekLab.length;i++) {
                             updateTeknisiSampel(mIdTekLab[i]);
                         }
-                        /*//Starting login activity
-                        Intent intent = new Intent(Memilih_Lab.this, Verifikasi_order.class);
-                        startActivity(intent);
 
-                        finish();*/
                     }
                 });
 
@@ -316,8 +266,8 @@ public class Memilih_Teknisi extends AppCompatActivity {
             protected String doInBackground(Void... params) {
                 HashMap<String,String> hashMap = new HashMap<>();
 
-                hashMap.put(Config.KEY_ID_TEKNISI,mIdTekLab);
                 hashMap.put(Config.Sampel_id,kode);
+                hashMap.put(Config.KEY_Teknisi_Masuk,mIdTekLab);
                 hashMap.put(Config.KEY_EMP_Verifikasi,random);
 
                 //hashMap.put(Config.KEY_EMP_NAME,id_lingkup);
