@@ -104,7 +104,7 @@ public class Memilih_Teknisi extends AppCompatActivity {
 
         //aksi saat submit
         bSubmit = (Button) findViewById(R.id.bSubmit);
-
+        
 
         getData();
     }
